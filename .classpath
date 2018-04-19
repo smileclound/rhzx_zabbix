@@ -2,166 +2,166 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/test/java"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/antisamy-1.4.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/apacheds-i18n-2.0.0-M15.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/apacheds-kerberos-codec-2.0.0-M15.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/api-asn1-api-1.0.0-M20.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/api-util-1.0.0-M20.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/asm-3.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/avro-1.7.6-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-css-1.7.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-ext-1.7.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-util-1.7.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/bsh-core-2.0b4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-beanutils-1.7.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-beanutils-core-1.7.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-cli-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-codec-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-collections-3.2.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-compress-1.4.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-configuration-1.6.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-daemon-1.0.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-digester-1.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-el-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-fileupload-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-io-2.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-lang-2.6.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-math3-3.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-math-2.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-net-3.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-pool2-2.4.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-pool2-2.4.2-javadoc.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/core-3.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-client-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-framework-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-recipes-2.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/disruptor-3.3.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/esapi-2.1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/fastjson-1.1.36.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/findbugs-annotations-1.3.9-1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/gson-2.2.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/guava-12.0.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-annotations-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-auth-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-common-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-hdfs-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-hdfs-2.6.0-cdh5.7.1-tests.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-app-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-common-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-core-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-hs-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-hs-plugins-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-jobclient-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-jobclient-2.6.0-cdh5.7.1-tests.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-nativetask-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-shuffle-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-examples-2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hamcrest-core-1.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-annotations-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-client-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-common-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-common-1.2.0-cdh5.7.1-tests.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-examples-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-external-blockcache-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-hadoop2-compat-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-hadoop-compat-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-it-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-prefix-tree-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-procedure-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-protocol-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-resource-bundle-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-rest-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-server-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-shell-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-spark-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-thrift-1.2.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/high-scale-lib-1.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-common-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-jdbc-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-jdbc-2.3.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-serde-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-2.3.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-rpc-2.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hsqldb-1.8.0.10.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/htrace-core4-4.0.1-incubating.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/htrace-core-3.2.0-incubating.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpclient-4.2.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpclient-4.5.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpcore-4.2.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpcore-4.4.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-annotations-2.3.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-2.3.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-asl-1.8.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-asl-1.9.12.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-databind-2.3.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-1.8.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-1.9.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-json-provider-2.1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-mapper-asl-1.8.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-mapper-asl-1.9.12.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-module-jaxb-annotations-2.1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-module-scala_2.10-2.2.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-xc-1.8.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-xc-1.9.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jamon-runtime-2.4.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jasper-compiler-5.5.23.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jasper-runtime-5.5.23.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/java-xmlbuilder-0.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jaxb-api-2.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jaxb-impl-2.2.3-1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jcodings-1.0.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jedis-2.6.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jedis-jedis-2.8.1.zip"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-client-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-core-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-json-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-server-1.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jets3t-0.9.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jettison-1.3.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-6.1.26.cloudera.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-sslengine-6.1.26.cloudera.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-util-6.1.26.cloudera.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/joni-2.1.2.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jruby-cloudera-1.0.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsch-0.1.42.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-2.1-6.1.14.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-api-2.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-api-2.1-6.1.14.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsr305-1.3.9.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/leveldbjni-all-1.8.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/libthrift-0.9.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/lombok-1.14.4.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/metrics-core-2.2.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/mysql-connector-java-6.0.6.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/nekohtml-1.9.12.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/netty-all-4.0.23.Final.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/paranamer-2.3.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/poi-3.12.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/protobuf-java-2.5.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/servlet-api-2.5-6.1.14.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/slf4j-api-1.7.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/slf4j-log4j12-1.7.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/snappy-java-1.0.4.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-assembly-1.6.0-cdh5.7.1-hadoop2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-core_2.10-1.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-examples-1.6.0-cdh5.7.1-hadoop2.6.0-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-redis-0.1.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xalan-2.7.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xercesImpl-2.9.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xml-apis-1.3.03.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xml-apis-ext-1.3.04.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xmlenc-0.52.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xom-1.2.5.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xz-1.0.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/zookeeper-3.4.5-cdh5.7.1.jar"/>
-	<classpathentry kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/quartz-2.3.0.jar"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/activation-1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/antisamy-1.4.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/apacheds-i18n-2.0.0-M15.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/apacheds-kerberos-codec-2.0.0-M15.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/api-asn1-api-1.0.0-M20.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/api-util-1.0.0-M20.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/asm-3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/avro-1.7.6-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-css-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-ext-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/batik-util-1.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/bsh-core-2.0b4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-beanutils-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-beanutils-core-1.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-cli-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-codec-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-collections-3.2.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-compress-1.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-configuration-1.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-daemon-1.0.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-digester-1.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-el-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-fileupload-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-httpclient-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-io-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-lang-2.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-logging-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-math3-3.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-math-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-net-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-pool2-2.4.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/commons-pool2-2.4.2-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/core-3.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-client-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-framework-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/curator-recipes-2.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/disruptor-3.3.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/esapi-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/fastjson-1.1.36.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/findbugs-annotations-1.3.9-1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/gson-2.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/guava-12.0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-annotations-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-auth-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-common-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-hdfs-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-hdfs-2.6.0-cdh5.7.1-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-app-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-common-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-core-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-hs-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-hs-plugins-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-jobclient-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-jobclient-2.6.0-cdh5.7.1-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-nativetask-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-client-shuffle-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hadoop-mapreduce-examples-2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hamcrest-core-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-annotations-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-client-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-common-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-common-1.2.0-cdh5.7.1-tests.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-examples-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-external-blockcache-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-hadoop2-compat-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-hadoop-compat-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-it-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-prefix-tree-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-procedure-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-protocol-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-resource-bundle-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-rest-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-server-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-shell-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-spark-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hbase-thrift-1.2.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/high-scale-lib-1.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-common-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-jdbc-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-jdbc-2.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-serde-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-2.3.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hive-service-rpc-2.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/hsqldb-1.8.0.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/htrace-core4-4.0.1-incubating.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/htrace-core-3.2.0-incubating.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpclient-4.2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpclient-4.5.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpcore-4.2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/httpcore-4.4.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-annotations-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-asl-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-core-asl-1.9.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-databind-2.3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-1.9.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-jaxrs-json-provider-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-mapper-asl-1.9.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-module-jaxb-annotations-2.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-module-scala_2.10-2.2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-xc-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jackson-xc-1.9.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jamon-runtime-2.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jasper-compiler-5.5.23.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jasper-runtime-5.5.23.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/java-xmlbuilder-0.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jaxb-api-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jaxb-impl-2.2.3-1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jcodings-1.0.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jedis-2.6.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jedis-jedis-2.8.1.zip"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-client-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-core-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-json-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jersey-server-1.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jets3t-0.9.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jettison-1.3.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-6.1.26.cloudera.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-sslengine-6.1.26.cloudera.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jetty-util-6.1.26.cloudera.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/joni-2.1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jruby-cloudera-1.0.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsch-0.1.42.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-2.1-6.1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-api-2.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsp-api-2.1-6.1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/jsr305-1.3.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/junit-4.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/leveldbjni-all-1.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/libthrift-0.9.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/log4j-1.2.17.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/lombok-1.14.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/metrics-core-2.2.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/mysql-connector-java-6.0.6.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/nekohtml-1.9.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/netty-all-4.0.23.Final.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/paranamer-2.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/poi-3.12.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/protobuf-java-2.5.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/servlet-api-2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/servlet-api-2.5-6.1.14.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/slf4j-api-1.7.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/slf4j-log4j12-1.7.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/snappy-java-1.0.4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-assembly-1.6.0-cdh5.7.1-hadoop2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-core_2.10-1.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-examples-1.6.0-cdh5.7.1-hadoop2.6.0-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/spark-redis-0.1.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xalan-2.7.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xercesImpl-2.9.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xml-apis-1.3.03.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xml-apis-ext-1.3.04.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xmlenc-0.52.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xom-1.2.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/xz-1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/zookeeper-3.4.5-cdh5.7.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="/home/hadoop/Documents/eclipse_workspace/lib/sparkJar/quartz-2.3.0.jar"/>
 	<classpathentry kind="output" path="target"/>
 </classpath>

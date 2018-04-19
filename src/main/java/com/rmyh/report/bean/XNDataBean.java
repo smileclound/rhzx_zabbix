@@ -162,6 +162,14 @@ public class XNDataBean implements XNDataBeanInterface {
 		this.value_avg = value;
 	}
 
+	public String getHostIp() {
+		return hostIp;
+	}
+
+	public void setHostIp(String ip) {
+		this.hostIp = ip;
+	}
+	
 //	public String getMonitorobj() {
 //		return monitorobj;
 //	}

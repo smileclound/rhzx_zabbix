@@ -1,8 +1,11 @@
 package com.rmyh.report.service.zabbix;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import com.rmyh.report.bean.ItemBean;
 import com.rmyh.report.dao.reportZabbixApi;
@@ -17,7 +20,8 @@ import com.zabbix4j.item.ItemObject;
 public class GetItems {
 
 	public static void main(String[] args) throws ZabbixApiException {
-		getAllItems_App();
+		// getAllItems_App();
+//		System.out.println(transKeyofName("cpu $1 time","fsjhfjk[nice,bad]"));
 	}
 
 	public static List<ItemBean> getAllItems() throws ZabbixApiException {
@@ -50,6 +54,7 @@ public class GetItems {
 		return itemBeans;
 
 	}
+
 	public static List<ItemBean> getAllItems_App() throws ZabbixApiException {
 		List<ItemBean> itemBeans = new ArrayList();
 		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
@@ -60,36 +65,39 @@ public class GetItems {
 			for (int j = 0; j < hostList.size(); j++) {
 				int hostId = (Integer) hostList.get(j).get("hostId");
 				String hostName = (String) hostList.get(j).get("hostName");
+				String hostIp = (String) hostList.get(j).get("hostIp");
 				List<HashMap> applicationList = getApplicationObjList(hostId);
-				for(int l=0;l<applicationList.size();l++) {
-				int applicationId = (Integer) applicationList.get(l).get("applicationId");
-				String applicationName = (String) applicationList.get(l).get("applicationName");
-				List<ItemObject> itemList = getItemsObjList_ByApp(applicationId);
-				for (int k = 0; k < itemList.size(); k++) {
-					int itemId = (Integer) itemList.get(k).getItemid();
-					String itemName = itemList.get(k).getName();
-					String itemKey = itemList.get(k).getKey_();
-					ItemBean itemBean = new ItemBean();
-					itemBean.setGroupId(groupId);
-					itemBean.setGroupName(groupName);
-					itemBean.setHostId(hostId);
-					itemBean.setHostName(hostName);
-					itemBean.setItemId(itemId);
-					itemBean.setItemName(itemName);
-					itemBean.setItemKey(itemKey);
-					itemBean.setApplicationId(applicationId);
-					itemBean.setApplicationName(applicationName);
-					itemBeans.add(itemBean);
-				}
+				for (int l = 0; l < applicationList.size(); l++) {
+					int applicationId = (Integer) applicationList.get(l).get("applicationId");
+					String applicationName = (String) applicationList.get(l).get("applicationName");
+					List<ItemObject> itemList = getItemsObjList_ByApp(applicationId);
+					for (int k = 0; k < itemList.size(); k++) {
+						int itemId = (Integer) itemList.get(k).getItemid();
+						String itemTmpName = itemList.get(k).getName();
+						String itemKey = itemList.get(k).getKey_();
+						String itemName = transKeyofName(itemTmpName, itemKey);
+						ItemBean itemBean = new ItemBean();
+						itemBean.setGroupId(groupId);
+						itemBean.setGroupName(groupName);
+						itemBean.setHostId(hostId);
+						itemBean.setHostName(hostName);
+						itemBean.setItemId(itemId);
+						itemBean.setItemName(itemName);
+						itemBean.setItemKey(itemKey);
+						itemBean.setApplicationId(applicationId);
+						itemBean.setApplicationName(applicationName);
+						itemBean.setHostIp(hostIp);
+						itemBeans.add(itemBean);
+					}
 
-			}
+				}
 			}
 		}
-//		System.out.println(itemBeans);
+		// System.out.println(itemBeans);
 		return itemBeans;
 
 	}
-	
+
 	public static List getApplicationObjList(int hostId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		ArrayList<Integer> itemids = new ArrayList<Integer>();
@@ -98,17 +106,16 @@ public class GetItems {
 		ApplicationGetRequest.Params params = request.getParams();
 
 		ArrayList<Integer> hostIds = new ArrayList<Integer>();
-		 hostIds.add(hostId);
-		 params.setHostids(hostIds);
+		hostIds.add(hostId);
+		params.setHostids(hostIds);
 		// 这里可以设指定的id值，也可以不设值。设值的话，取指定的内容，不设的话，获取全部的host
 		// params.setHostids(hostIds);
-
 
 		ApplicationGetResponse response = zabbixApi.getApi().application().get(request);
 
 		List list = new ArrayList();
 		for (int i = 0; i < response.getResult().size(); i++) {
-			HashMap map =new HashMap();
+			HashMap map = new HashMap();
 			map.put("applicationId", response.getResult().get(i).getApplicationid());
 			map.put("applicationName", response.getResult().get(i).getName());
 			list.add(map);
@@ -116,7 +123,7 @@ public class GetItems {
 		}
 		return list;
 	}
-	
+
 	public static List getItemsObjList_ByApp(int appliId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
@@ -127,7 +134,7 @@ public class GetItems {
 		appliIdArr.add(appliId);
 		params.setApplicationids(appliIdArr);
 		ItemGetResponse response = zabbixApi.getApi().item().get(request);
-		
+
 		ArrayList itemsList = new ArrayList();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
@@ -138,8 +145,6 @@ public class GetItems {
 		return itemsList;
 
 	}
-	
-	
 
 	public ItemGetResponse getItems(int hostid) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
@@ -282,4 +287,30 @@ public class GetItems {
 		return itemsListObjByGroup;
 	}
 
+	public static String transKeyofName(String itemName, String key) {
+		String destinStr = "";
+		Pattern ptn = Pattern.compile("(?:\\$\\d*)");
+		Matcher m = ptn.matcher(itemName);
+		StringBuffer sb = new StringBuffer();
+		// List <ItemBean> allItemBean= new GetItems().getAllItems();
+		for (int i = 0; m.find(); i++) {
+			String Replace = transKeyId2Name(key,
+					m.group().substring(m.group().indexOf("$") + 1, m.group().indexOf("$") + 2));
+			m.appendReplacement(sb, Replace);
+		}
+		m.appendTail(sb);
+		return sb.toString();
+	}
+
+	public static String transKeyId2Name(String key, String keyId) {
+		String keyName = null;
+		String keyarray_s = key.substring(key.indexOf("[")+1,key.lastIndexOf("]"));
+		List keyarray = new ArrayList();
+		keyarray = Arrays.asList(keyarray_s.split(","));
+		for (int i = 0; i < keyarray.size(); i++) {
+			if (Integer.parseInt(keyId)-1 == i)
+				keyName = (String) keyarray.get(i);
+		}
+		return keyName;
+	}
 }

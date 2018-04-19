@@ -2,13 +2,20 @@ package com.rmyh.report.service.zabbix;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.rmyh.report.dao.reportZabbixApi;
 import com.zabbix4j.ZabbixApiException;
 import com.zabbix4j.host.HostGetRequest;
 import com.zabbix4j.host.HostGetResponse;
 import com.zabbix4j.host.HostObject;
+import com.zabbix4j.hostinteface.HostInterfaceGetRequest;
+import com.zabbix4j.hostinteface.HostInterfaceGetResponse;
+import com.zabbix4j.hostinteface.HostInterfaceObject;
+import com.zabbix4j.proxy.ProxyGetRequest;
+import com.zabbix4j.proxy.ProxyGetResponse;
 
 public class GetHosts {
 	public static List hostsIdList = new ArrayList();
@@ -27,6 +34,19 @@ public class GetHosts {
 
 		params.setGroupids(groupids);
 		HostGetResponse response = zabbixApi.getApi().host().get(request);
+		return response;
+	}
+	public static HostInterfaceGetResponse getHostInterface(int hostId) throws ZabbixApiException {
+		reportZabbixApi zabbixApi = new reportZabbixApi();
+		zabbixApi.login();
+
+		HostInterfaceGetRequest request = new HostInterfaceGetRequest();
+		HostInterfaceGetRequest.Params params = request.getParams();
+		List hostIdsList = new ArrayList();
+		hostIdsList.add(hostId);
+		params.setHostids(hostIdsList);
+
+		HostInterfaceGetResponse response = zabbixApi.getApi().hostInterface().get(request);
 		return response;
 	}
 
@@ -122,9 +142,13 @@ public class GetHosts {
 		groupidarr.add(groupid);
 		HostGetResponse response = getHost(groupidarr);
 		ArrayList hostsObjList = new ArrayList();
+//		ProxyGetResponse proxyresponse = getProxy();
+
+		
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			HostObject myHostObject = response.getResult().get(i);
+			Set hostsIpList = new HashSet();
 			// 打印hostgroup信息
 			if (null == myHostObject) {
 				System.out.println("Get data null");
@@ -133,6 +157,13 @@ public class GetHosts {
 				// hostObjList.add(myHostObject.getHost());
 				hostobj.put("hostName", myHostObject.getName());
 				hostobj.put("hostId", myHostObject.getHostid());
+				HostInterfaceGetResponse HostInterfaceresponse = getHostInterface(myHostObject.getHostid());
+				for(int j = 0; j< HostInterfaceresponse.getResult().size(); j++) {
+					for(HostInterfaceObject result : HostInterfaceresponse.getResult()) {
+							hostsIpList.add(result.getIp());
+					}
+				}  
+				hostobj.put("hostIp", hostsIpList.toString());
 				hostsObjList.add(hostobj);
 			}
 

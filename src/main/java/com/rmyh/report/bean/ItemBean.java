@@ -21,6 +21,8 @@ public class ItemBean{
 		map.put("itemName", Family);
 		map.put("applicationId", Family);
 		map.put("applicationName", Family);
+		map.put("itemKey", Family);
+		map.put("hostIp", Family);
 		
 
 	}
@@ -34,7 +36,7 @@ public class ItemBean{
 	public String itemName;// 
 	public String itemKey;
 	public String applicationName;
-
+	public String hostIp;
 
 
 	public String getItemName() {
@@ -103,6 +105,16 @@ public class ItemBean{
 	public void setApplicationId(int id) {
 		this.applicationId = id;
 	}
+	
+	
+	public String getHostIp() {
+		return hostIp;
+	}
+
+	public void setHostIp(String ip) {
+		this.hostIp = ip;
+	}
+	
 	
 	public String getKey() {
 

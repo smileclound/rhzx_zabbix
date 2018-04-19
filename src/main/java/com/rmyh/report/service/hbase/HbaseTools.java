@@ -27,7 +27,9 @@ import org.apache.hadoop.hbase.util.Bytes;
 import org.apache.hadoop.hbase.filter.CompareFilter;
 import org.apache.log4j.Logger;
 
+import com.rmyh.report.bean.AlertBean;
 import com.rmyh.report.bean.ItemBean;
+import com.rmyh.report.bean.TriggerBean;
 import com.rmyh.report.bean.XNDataBean;
 import com.rmyh.report.bean.XNDataBeanInterface;
 import com.rmyh.report.controller.General;
@@ -44,7 +46,7 @@ public class HbaseTools implements Serializable {
 	// Iterator<Tuple2<String, DataBean>> it
 
 	@SuppressWarnings("deprecation")
-	public void putsDataBean(List<XNDataBean> dataBeans, String tableName, long datePre, long dateNex) {
+	public void putsXNDataBean(List<XNDataBean> dataBeans, String tableName, long datePre, long dateNex) {
 		if (dataBeans == null) { dataBeans = new ArrayList();}
 		if (dataBeans != null && tableName != null && !tableName.trim().equals("")) {
 
@@ -157,7 +159,7 @@ public class HbaseTools implements Serializable {
 	
 	
 	@SuppressWarnings("deprecation")
-	public void putsDataBean(List<ItemBean> itemBeans, String tableName , String insertItemClock) {
+	public void putsItemDataBean(List<ItemBean> itemBeans, String tableName , String insertItemClock) {
 		if (itemBeans == null) { itemBeans = new ArrayList();}
 		if (tableName != null && !tableName.trim().equals("")) {
 
@@ -217,6 +219,68 @@ public class HbaseTools implements Serializable {
 
 	}
 
+	@SuppressWarnings("deprecation")
+	public void putsTriggerDataBean(List<TriggerBean> triggerBeans, String tableName , String insertTriggerClock) {
+		if (triggerBeans == null) { triggerBeans = new ArrayList();}
+		if (tableName != null && !tableName.trim().equals("")) {
+
+			HTable table = null;
+			List<Put> puts = null;
+			HbaseConnection hbCon = null;
+			ExecutorService pool = null;
+
+			try {
+				hbCon = HbaseConnectionFactory.getHbaseConnection();
+				pool = Executors.newFixedThreadPool(50);
+				puts = new ArrayList<Put>();
+				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
+
+				table.setWriteBufferSize(104857600);
+				
+				table.setAutoFlush(false);
+				if (triggerBeans.size() != 0) {
+				for (TriggerBean triggerBean : triggerBeans) {
+					puts.add(putDataColumns(triggerBean, tableName, insertTriggerClock));
+				}}
+				table.put(puts);
+				table.flushCommits();
+			} catch (Exception e) {
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+				logger.error(sdf.format(date) + " HbaseTools.putsDataBean, ERROR: ", e);
+			} finally {
+				// 閿熸埅闂唻鎷�
+				if (table != null) {
+					try {
+						table.close();
+					} catch (IOException e) {
+						Date date = new Date();
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+						logger.error(sdf.format(date) + " HbaseTools.putsDataBean, ERROR: ", e);
+					}
+				}
+
+				puts.clear();
+				puts = null;
+				writeDateLog(insertTriggerClock, "triggers", triggerBeans.size());
+				triggerBeans.clear();
+				triggerBeans = null;
+				pool.shutdown();
+				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
+				
+//				try {
+//					hbCon.getConnection().close();
+//					System.out.println("hbcon close succ!");
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+			}
+		}
+
+	}
+
+	
 	public XNDataBean getValueByTransDetails(String tableName, String key) {
 		// TODO
 		HTable table = null;
@@ -372,6 +436,95 @@ public class HbaseTools implements Serializable {
 
 	}
 
+	public Put putDataColumns(TriggerBean db, String tableName, String insertItemClock) {
+		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
+
+		Class beanClass = null;
+		Field[] fields = null;
+		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
+		Put put = null;
+		// 閿熸枻鎷烽敓鐭尅鎷烽敓鏂ゆ嫹閿熸枻鎷风紭閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
+
+		try {
+
+			if (db instanceof TriggerBean) {
+				TriggerBean tb = (TriggerBean) db;
+				beanClass = (Class) tb.getClass();
+				fields = beanClass.getFields();
+				new Date();
+				String familyName = "";
+				String fieldName = "";
+				String value = "";
+
+				if (!tb.getKey().equals("")) {
+					put = new Put(Bytes.toBytes("T"+insertItemClock+tb.getKey()));
+					put.setTTL(Long.parseLong("8640000000"));
+					for (Field field : fields) {
+						fieldName = field.getName();
+						familyName = (String) TriggerBean.map.get(fieldName);
+						if (familyName != null && familyName != "" && field.get(tb) != null) {
+							value = new String(String.valueOf(field.get(tb)));
+							if (value != null && !value.trim().equals("")) {
+								put.addColumn(Bytes.toBytes(familyName), Bytes.toBytes(fieldName),
+										Bytes.toBytes(value));
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+			logger.error(sdf.format(date) + " HbaseTools.putDataColumns, ERROR: ", e);
+		}
+		return put;
+
+	}
+
+	public Put putDataColumns(AlertBean db, String tableName) {
+		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
+
+		Class beanClass = null;
+		Field[] fields = null;
+		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
+		Put put = null;
+		// 閿熸枻鎷烽敓鐭尅鎷烽敓鏂ゆ嫹閿熸枻鎷风紭閿熸枻鎷烽敓鏂ゆ嫹閿燂拷
+
+		try {
+
+			if (db instanceof AlertBean) {
+				AlertBean tb = (AlertBean) db;
+				beanClass = (Class) tb.getClass();
+				fields = beanClass.getFields();
+				String familyName = "";
+				String fieldName = "";
+				String value = "";
+
+				if (!tb.getKey().equals("")) {
+					put = new Put(Bytes.toBytes(tb.getKey()));
+					put.setTTL(Long.parseLong("8640000000"));
+					for (Field field : fields) {
+						fieldName = field.getName();
+						familyName = (String) AlertBean.map.get(fieldName);
+						if (familyName != null && familyName != "" && field.get(tb) != null) {
+							value = new String(String.valueOf(field.get(tb)));
+							if (value != null && !value.trim().equals("")) {
+								put.addColumn(Bytes.toBytes(familyName), Bytes.toBytes(fieldName),
+										Bytes.toBytes(value));
+							}
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+			Date date = new Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+			logger.error(sdf.format(date) + " HbaseTools.putDataColumns, ERROR: ", e);
+		}
+		return put;
+
+	}
+	
 	public List<XNDataBean> getValueByTimeWId(String tableName, long startTime, long stopTime, int itemId)
 			throws java.text.ParseException {
 		// String tableName, String startTime, String stopTime, Integer itemId,
@@ -603,4 +756,67 @@ public class HbaseTools implements Serializable {
 		// 閿熸枻鎷疯閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹涔滈敓锟�
 		return null;
 	}
+
+	@SuppressWarnings("deprecation")
+	public void putsAlertDataBean(List<AlertBean> dataBeans, String tableName, long datePre, long dateNex) {
+		if (dataBeans == null) { dataBeans = new ArrayList();}
+		if (dataBeans != null && tableName != null && !tableName.trim().equals("")) {
+
+			HTable table = null;
+			List<Put> puts = null;
+			HbaseConnection hbCon = null;
+			ExecutorService pool = null;
+
+			try {
+				hbCon = HbaseConnectionFactory.getHbaseConnection();
+				pool = Executors.newFixedThreadPool(50);
+				puts = new ArrayList<Put>();
+//				System.out.println(tableName+""+hbCon+""+pool);
+				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
+
+				table.setWriteBufferSize(104857600);
+
+				table.setAutoFlush(false);
+				if (dataBeans.size() != 0) {
+				for (AlertBean dataBean : dataBeans) {
+					puts.add(putDataColumns(dataBean, tableName));
+				}}
+				table.put(puts);
+				table.flushCommits();
+			} catch (Exception e) {
+				Date date = new Date();
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+				logger.error(sdf.format(date) + " HbaseTools.putsDataBean, ERROR: ", e);
+			} finally {
+				// 閿熸埅闂唻鎷�
+				if (table != null) {
+					try {
+						table.close();
+					} catch (IOException e) {
+						Date date = new Date();
+						SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss,SSS");
+						logger.error(sdf.format(date) + " HbaseTools.putsDataBean, ERROR: ", e);
+					}
+				}
+
+				puts.clear();
+				puts = null;
+				writeDateLog(datePre, dateNex, "alert data", dataBeans.size());
+				dataBeans.clear();
+				dataBeans = null;
+				pool.shutdown();
+				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
+				
+//				try {
+//					hbCon.getConnection().close();
+//					System.out.println("hbcon close succ!");
+//				} catch (IOException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+			}
+		}
+
+	}
+	
 }

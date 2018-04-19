@@ -21,9 +21,9 @@ import com.zabbix4j.trigger.FunctionObject;
 
 public class GetTriggers {
 
-//	public static void main(String[] args) throws ZabbixApiException {
-//		getAllTriggers_App();
-//	}
+	public static void main(String[] args) throws ZabbixApiException {
+		getAllTriggers_App();
+	}
 
 	public static List<TriggerBean> getAllTriggers() throws ZabbixApiException {
 		List<TriggerBean> triggerBeans = new ArrayList();
@@ -69,6 +69,7 @@ public class GetTriggers {
 			for (int j = 0; j < hostList.size(); j++) {
 				int hostId = (Integer) hostList.get(j).get("hostId");
 				String hostName = (String) hostList.get(j).get("hostName");
+				String hostIp = (String) hostList.get(j).get("hostIp");
 				List<HashMap> applicationList = getApplicationObjList(hostId);
 				for (int l = 0; l < applicationList.size(); l++) {
 					int applicationId = (Integer) applicationList.get(l).get("applicationId");
@@ -80,6 +81,7 @@ public class GetTriggers {
 						triggerBean.setGroupId(groupId);
 						triggerBean.setGroupName(groupName);
 						triggerBean.setHostId(hostId);
+						triggerBean.setHostIp(hostIp);
 						triggerBean.setHostName(hostName);
 						triggerBean.setTriggerId((Integer) triggerList.get(k).getTriggerid());
 						triggerBean.setTriggerValue(triggerList.get(k).getValue());
@@ -91,6 +93,8 @@ public class GetTriggers {
 						triggerBean.setTriggerDescri(triggerList.get(k).getDescription());
 						triggerBean.setApplicationId(applicationId);
 						triggerBean.setApplicationName(applicationName);
+						triggerBean.setStatus(triggerList.get(k).getStatus());
+						triggerBean.setPriority(triggerList.get(k).getPriority());
 						triggerBeans.add(triggerBean);
 					}
 				}
