@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import com.alibaba.fastjson.JSON;
 import com.rmyh.report.bean.AlertBean;
 import com.zabbix4j.ZabbixApiException;
 import com.zabbix4j.alert.AlertGetResponse;
@@ -23,10 +19,10 @@ public class GetAlerts {
 
 	// for zabbixweb
 	public static List<AlertBean> getCountBean() throws ZabbixApiException {
-		List<AlertBean> alertBeans = getBean();
-		List<AlertBean> alertCountBeans = new ArrayList();
+		List<AlertBean> alertBeans = new GetAlerts().getBean();
+		List<AlertBean> alertCountBeans = new ArrayList<AlertBean>();
 		OUT: for (AlertBean alertbean : alertBeans) {
-			IN: for (AlertBean countbean : alertCountBeans) {
+			for (AlertBean countbean : alertCountBeans) {
 				if (alertbean.getHostId() == countbean.getHostId()
 						&& alertbean.getAlertTitle().equals(countbean.getAlertTitle())) {
 					countbean.setAlertTimes((Integer) (countbean.getALertTimes() + 1));
@@ -43,20 +39,20 @@ public class GetAlerts {
 		return alertCountBeans;
 	}
 
-	public static List<AlertBean> getBean() throws ZabbixApiException {
-		List<AlertBean> alertBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+	public List<AlertBean> getBean() throws ZabbixApiException {
+		List<AlertBean> alertBeans = new ArrayList<AlertBean>();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
-			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
+//			String groupName = (String) hostGroupList.get(i).get("groupName");
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				String hostIp = (String) hostList.get(j).get("hostIp");
 
 				AlertGetResponse AlertObj = new GetAlertResponse().getAlert(hostId);
-				List beans = new ArrayList();
+				List<AlertBean> beans = new ArrayList<AlertBean>();
 
 				for (int k = 0; k < AlertObj.getResult().size(); k++) {
 					AlertBean bean = new AlertBean();

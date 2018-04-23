@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.rmyh.report.bean.ItemBean;
 import com.rmyh.report.bean.XNDataBean;
-import com.rmyh.report.bean.XNDataBeanInterface;
+//import com.rmyh.report.bean.XNDataBeanInterface;
 import com.zabbix4j.ZabbixApiException;
 import com.zabbix4j.history.HistoryGetResponse;
 import com.zabbix4j.history.HistoryObject;
@@ -19,9 +19,9 @@ public class GetHistoryBeanList extends ItemBean {
 //		getBean(itemBeans,23294,1407776000000l,1530368000000l);
 //	}
 //	
-	public static List<XNDataBean> getBean(List<ItemBean> itemBeans, int itemId, long datePre,long dateNex) throws ZabbixApiException {
+	public List<XNDataBean> getBean(List<ItemBean> itemBeans, int itemId, long datePre,long dateNex) throws ZabbixApiException {
 		HistoryGetResponse historyObj = new GetHistoryResponse().getHistory(itemId, datePre, dateNex);
-		List beans = new ArrayList();
+		List<XNDataBean> beans = new ArrayList<XNDataBean>();
 //		List<ItemBean> itemBeans = new GetItems().getAllItems();
 		ItemBean itemBean = new ItemBean();
 		for(int j=0;j<itemBeans.size();j++) {

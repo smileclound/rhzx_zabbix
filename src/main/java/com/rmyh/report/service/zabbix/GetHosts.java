@@ -14,18 +14,14 @@ import com.zabbix4j.host.HostObject;
 import com.zabbix4j.hostinteface.HostInterfaceGetRequest;
 import com.zabbix4j.hostinteface.HostInterfaceGetResponse;
 import com.zabbix4j.hostinteface.HostInterfaceObject;
-import com.zabbix4j.proxy.ProxyGetRequest;
-import com.zabbix4j.proxy.ProxyGetResponse;
 
 public class GetHosts {
-	public static List hostsIdList = new ArrayList();
-	public static List hostsObjList = new ArrayList();
 
 	 public static void main(String[] args) throws ZabbixApiException {
 	 gethostsObjList();
 	 }
 
-	public static HostGetResponse getHost(ArrayList groupids) throws ZabbixApiException {
+	public static HostGetResponse getHost(ArrayList<Integer> groupids) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
 
@@ -42,7 +38,7 @@ public class GetHosts {
 
 		HostInterfaceGetRequest request = new HostInterfaceGetRequest();
 		HostInterfaceGetRequest.Params params = request.getParams();
-		List hostIdsList = new ArrayList();
+		List<Integer> hostIdsList = new ArrayList<Integer>();
 		hostIdsList.add(hostId);
 		params.setHostids(hostIdsList);
 
@@ -50,14 +46,15 @@ public class GetHosts {
 		return response;
 	}
 
-	public static List gethostsIdList() throws ZabbixApiException {
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+	public List<List<Integer>> gethostsIdList() throws ZabbixApiException {
+		List<Integer> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 
+		List<List<Integer>> hostsIdList = new ArrayList<List<Integer>>();
 		for (int k = 0; k < hostGroupsList.size(); k++) {
-			ArrayList groupid = new ArrayList();
+			ArrayList<Integer> groupid = new ArrayList<Integer>();
 			groupid.add(hostGroupsList.get(k));
 			HostGetResponse response = getHost(groupid);
-			ArrayList hostIdList = new ArrayList();
+			ArrayList<Integer> hostIdList = new ArrayList<Integer>();
 
 			for (int i = 0; i < response.getResult().size(); i++) {
 				HostObject myHostObject = response.getResult().get(i);
@@ -79,12 +76,12 @@ public class GetHosts {
 		return hostsIdList;
 	}
 
-	public static ArrayList gethostsIdList(int groupid) throws ZabbixApiException {
+	public ArrayList<Integer> gethostsIdList(int groupid) throws ZabbixApiException {
 
-		ArrayList groupidarr = new ArrayList();
+		ArrayList<Integer> groupidarr = new ArrayList<Integer>();
 		groupidarr.add(groupid);
 		HostGetResponse response = getHost(groupidarr);
-		ArrayList hostIdList = new ArrayList();
+		ArrayList<Integer> hostIdList = new ArrayList<Integer>();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			HostObject myHostObject = response.getResult().get(i);
@@ -103,14 +100,14 @@ public class GetHosts {
 
 	}
 
-	public static ArrayList gethostsObjList() throws ZabbixApiException {
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-		ArrayList hostsObjList = new ArrayList();
+	public static ArrayList<ArrayList<HashMap<String, String>>> gethostsObjList() throws ZabbixApiException {
+		List<Integer> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+		ArrayList<ArrayList<HashMap<String, String>>> hostsObjList = new ArrayList<ArrayList<HashMap<String, String>>>();
 		for (int k = 0; k < hostGroupsList.size(); k++) {
-			ArrayList groupid = new ArrayList();
+			ArrayList<Integer> groupid = new ArrayList<Integer>();
 			groupid.add(hostGroupsList.get(k));
 			HostGetResponse response = getHost(groupid);
-			ArrayList hostObjList = new ArrayList();
+			ArrayList<HashMap<String, String>> hostObjList = new ArrayList<HashMap<String, String>>();
 
 			for (int i = 0; i < response.getResult().size(); i++) {
 				HostObject myHostObject = response.getResult().get(i);
@@ -118,10 +115,10 @@ public class GetHosts {
 				if (null == myHostObject) {
 					System.out.println("Get Host null");
 				} else {
-					HashMap hostobj = new HashMap();
+					HashMap<String, String> hostobj = new HashMap<String, String>();
 					// hostObjList.add(myHostObject.getHost());
 					hostobj.put("name", myHostObject.getName());
-					hostobj.put("id", myHostObject.getHostid());
+					hostobj.put("id", String.valueOf(myHostObject.getHostid()));
 					hostObjList.add(hostobj);
 					// System.out.println("-----------------------");
 					// System.out.println("id:"+myHostGroupObject.getGroupid()+";name:"+myHostGroupObject.getName());
@@ -136,27 +133,27 @@ public class GetHosts {
 		return hostsObjList;
 	}
 
-	public static List gethostsObjList(int groupid) throws ZabbixApiException {
+	public List<HashMap<String, String>> gethostsObjList(int groupid) throws ZabbixApiException {
 
-		ArrayList groupidarr = new ArrayList();
+		ArrayList<Integer> groupidarr = new ArrayList<Integer>();
 		groupidarr.add(groupid);
 		HostGetResponse response = getHost(groupidarr);
-		ArrayList hostsObjList = new ArrayList();
+		ArrayList<HashMap<String, String>> hostsObjList = new ArrayList<HashMap<String, String>>();
 //		ProxyGetResponse proxyresponse = getProxy();
 
 		
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			HostObject myHostObject = response.getResult().get(i);
-			Set hostsIpList = new HashSet();
+			Set<String> hostsIpList = new HashSet<String>();
 			// 打印hostgroup信息
 			if (null == myHostObject) {
 				System.out.println("Get data null");
 			} else {
-				HashMap hostobj = new HashMap();
+				HashMap<String, String> hostobj = new HashMap<String, String>();
 				// hostObjList.add(myHostObject.getHost());
 				hostobj.put("hostName", myHostObject.getName());
-				hostobj.put("hostId", myHostObject.getHostid());
+				hostobj.put("hostId", String.valueOf(myHostObject.getHostid()));
 				HostInterfaceGetResponse HostInterfaceresponse = getHostInterface(myHostObject.getHostid());
 				for(int j = 0; j< HostInterfaceresponse.getResult().size(); j++) {
 					for(HostInterfaceObject result : HostInterfaceresponse.getResult()) {

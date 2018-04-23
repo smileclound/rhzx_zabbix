@@ -10,7 +10,7 @@ import com.zabbix4j.hostgroup.*;
 
 public class GetHostGroups {
 	public static List<Integer> hostGroupdIdList;
-	public static List hostGroupObjList;
+	public static List<?> hostGroupObjList;
 
 	// public static void main(String[] args) throws ZabbixApiException {
 	//
@@ -22,7 +22,7 @@ public class GetHostGroups {
 		zabbixApi.login();
 
 		HostgroupGetRequest request = new HostgroupGetRequest();
-		HostgroupGetRequest.Params params = request.getParams();
+		// HostgroupGetRequest.Params params = request.getParams();
 		// params.setSelectConditions(null);
 		// params.setSelectDiscoveryRule(null);
 		// params.setSelectGroupDiscovery(null);
@@ -35,10 +35,10 @@ public class GetHostGroups {
 		return response;
 	}
 
-	public static List<Integer> getHostGroupdIdList() throws ZabbixApiException {
+	public List<Integer> getHostGroupdIdList() throws ZabbixApiException {
 		GetHostGroups myGetHostGroups = new GetHostGroups();
 		HostgroupGetResponse response = myGetHostGroups.getHostGroup();
-		List<Integer> hostGroupdIdList = new ArrayList();
+		List<Integer> hostGroupdIdList = new ArrayList<Integer>();
 		for (int i = 0; i < response.getResult().size(); i++) {
 			HostgroupObject myHostGroupObject = response.getResult().get(i);
 
@@ -55,10 +55,10 @@ public class GetHostGroups {
 		return hostGroupdIdList;
 	}
 
-	public static List getHostGroupsObjList() throws ZabbixApiException {
+	public List<HashMap<String, String>> getHostGroupsObjList() throws ZabbixApiException {
 		GetHostGroups myGetHostGroups = new GetHostGroups();
 		HostgroupGetResponse response = myGetHostGroups.getHostGroup();
-		List<HashMap> hostGroupObjList = new ArrayList();
+		List<HashMap<String, String>> hostGroupObjList = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < response.getResult().size(); i++) {
 			HostgroupObject myHostGroupObject = response.getResult().get(i);
 
@@ -66,14 +66,14 @@ public class GetHostGroups {
 			if (null == myHostGroupObject) {
 				System.out.println("Get hostgroup null");
 			} else {
-				HashMap groupobj = new HashMap();
+				HashMap<String, String> groupobj = new HashMap<String, String>();
 				groupobj.put("groupName", myHostGroupObject.getName());
-				groupobj.put("groupId", myHostGroupObject.getGroupid());
+				groupobj.put("groupId", String.valueOf(myHostGroupObject.getGroupid()));
 				hostGroupObjList.add(groupobj);
 
 			}
 		}
-//		System.out.println("hostGroupObjList:" + hostGroupObjList);
+		// System.out.println("hostGroupObjList:" + hostGroupObjList);
 		return hostGroupObjList;
 	}
 }

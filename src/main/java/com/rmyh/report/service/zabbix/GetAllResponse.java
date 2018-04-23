@@ -21,7 +21,7 @@ public class GetAllResponse {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
 		HostgroupGetRequest hostGroupRequest = new HostgroupGetRequest();
-		HostgroupGetRequest.Params params = hostGroupRequest.getParams();
+//		HostgroupGetRequest.Params params = hostGroupRequest.getParams();
 		HostgroupGetResponse hostGroupResponse = zabbixApi.getApi().hostgroup().get(hostGroupRequest);
 		return hostGroupResponse;
 	}
@@ -30,7 +30,7 @@ public class GetAllResponse {
 		zabbixApi.login();
 		HostGetRequest hostRequest = new HostGetRequest();
 		HostGetRequest.Params params = hostRequest.getParams();
-		List<Integer> groupIdList = new ArrayList();
+		List<Integer> groupIdList = new ArrayList<Integer>();
 		groupIdList.add(groupId);
 		params.setGroupids(groupIdList);
 		HostGetResponse hostResponse = zabbixApi.getApi().host().get(hostRequest);
@@ -41,7 +41,7 @@ public class GetAllResponse {
 		zabbixApi.login();
 		ApplicationGetRequest applicationRequest = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = applicationRequest.getParams();
-		List<Integer> hostIdList = new ArrayList();
+		List<Integer> hostIdList = new ArrayList<Integer>();
 		hostIdList.add(hostId);
 		params.setHostids(hostIdList);
 		ApplicationGetResponse applicationResponse = zabbixApi.getApi().application().get(applicationRequest);
@@ -52,7 +52,7 @@ public class GetAllResponse {
 		zabbixApi.login();
 		ItemGetRequest itemRequest = new ItemGetRequest();
 		ItemGetRequest.Params params = itemRequest.getParams();
-		List<Integer> applicationIdList = new ArrayList();
+		List<Integer> applicationIdList = new ArrayList<Integer>();
 		applicationIdList.add(applicationId);
 		params.setApplicationids(applicationIdList);
 		ItemGetResponse itemResponse = zabbixApi.getApi().item().get(itemRequest);

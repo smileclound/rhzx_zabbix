@@ -12,29 +12,28 @@ import com.rmyh.report.dao.reportZabbixApi;
 import com.zabbix4j.ZabbixApiException;
 import com.zabbix4j.application.ApplicationGetRequest;
 import com.zabbix4j.application.ApplicationGetResponse;
-import com.zabbix4j.application.ApplicationObject;
 import com.zabbix4j.item.ItemGetRequest;
 import com.zabbix4j.item.ItemGetResponse;
 import com.zabbix4j.item.ItemObject;
 
 public class GetItems {
 
-	public static void main(String[] args) throws ZabbixApiException {
-		// getAllItems_App();
-//		System.out.println(transKeyofName("cpu $1 time","fsjhfjk[nice,bad]"));
-	}
+//	public static void main(String[] args) throws ZabbixApiException {
+//		// getAllItems_App();
+////		System.out.println(transKeyofName("cpu $1 time","fsjhfjk[nice,bad]"));
+//	}
 
-	public static List<ItemBean> getAllItems() throws ZabbixApiException {
-		List<ItemBean> itemBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+	public List<ItemBean> getAllItems() throws ZabbixApiException {
+		List<ItemBean> itemBeans = new ArrayList<ItemBean>();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
-				List<ItemObject> itemList = getItemsObjList(hostId);
+				List<ItemObject> itemList = new GetItems().getItemsObjList(hostId);
 				for (int k = 0; k < itemList.size(); k++) {
 					int itemId = (Integer) itemList.get(k).getItemid();
 					String itemName = itemList.get(k).getName();
@@ -55,20 +54,20 @@ public class GetItems {
 
 	}
 
-	public static List<ItemBean> getAllItems_App() throws ZabbixApiException {
-		List<ItemBean> itemBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+	public List<ItemBean> getAllItems_App() throws ZabbixApiException {
+		List<ItemBean> itemBeans = new ArrayList<ItemBean>();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				String hostIp = (String) hostList.get(j).get("hostIp");
-				List<HashMap> applicationList = getApplicationObjList(hostId);
+				List<HashMap<String, String>> applicationList = new GetItems().getApplicationObjList(hostId);
 				for (int l = 0; l < applicationList.size(); l++) {
-					int applicationId = (Integer) applicationList.get(l).get("applicationId");
+					int applicationId = Integer.parseInt(applicationList.get(l).get("applicationId"));
 					String applicationName = (String) applicationList.get(l).get("applicationName");
 					List<ItemObject> itemList = getItemsObjList_ByApp(applicationId);
 					for (int k = 0; k < itemList.size(); k++) {
@@ -98,9 +97,9 @@ public class GetItems {
 
 	}
 
-	public static List getApplicationObjList(int hostId) throws ZabbixApiException {
+	public List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
-		ArrayList<Integer> itemids = new ArrayList<Integer>();
+//		ArrayList<Integer> itemids = new ArrayList<Integer>();
 		zabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
@@ -113,10 +112,10 @@ public class GetItems {
 
 		ApplicationGetResponse response = zabbixApi.getApi().application().get(request);
 
-		List list = new ArrayList();
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < response.getResult().size(); i++) {
-			HashMap map = new HashMap();
-			map.put("applicationId", response.getResult().get(i).getApplicationid());
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("applicationId", String.valueOf(response.getResult().get(i).getApplicationid()));
 			map.put("applicationName", response.getResult().get(i).getName());
 			list.add(map);
 			// System.out.println(map);
@@ -124,18 +123,18 @@ public class GetItems {
 		return list;
 	}
 
-	public static List getItemsObjList_ByApp(int appliId) throws ZabbixApiException {
+	public static List<ItemObject> getItemsObjList_ByApp(int appliId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
-		ArrayList appliIdArr = new ArrayList();
+		ArrayList<Integer> appliIdArr = new ArrayList<Integer>();
 		appliIdArr.add(appliId);
 		params.setApplicationids(appliIdArr);
 		ItemGetResponse response = zabbixApi.getApi().item().get(request);
 
-		ArrayList itemsList = new ArrayList();
+		ArrayList<ItemObject> itemsList = new ArrayList<ItemObject>();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			ItemObject myItemObject = response.getResult().get(i);
@@ -152,7 +151,7 @@ public class GetItems {
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
-		ArrayList hostids = new ArrayList();
+		ArrayList<Integer> hostids = new ArrayList<Integer>();
 		hostids.add(hostid);
 		params.setHostids(hostids);
 
@@ -160,7 +159,7 @@ public class GetItems {
 		return response;
 	}
 
-	public static ItemGetResponse getItems(ArrayList hostsidarr) throws ZabbixApiException {
+	public ItemGetResponse getItems(List<Integer> hostsidarr) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
 
@@ -172,12 +171,12 @@ public class GetItems {
 		return response;
 	}
 
-	public static List getItemsObjList(int hostid) throws ZabbixApiException {
+	public List<ItemObject> getItemsObjList(int hostid) throws ZabbixApiException {
 
-		ArrayList hostidarr = new ArrayList();
+		ArrayList<Integer> hostidarr = new ArrayList<Integer>();
 		hostidarr.add(hostid);
 		ItemGetResponse response = getItems(hostidarr);
-		ArrayList itemsList = new ArrayList();
+		List<ItemObject> itemsList = new ArrayList<ItemObject>();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			ItemObject myItemObject = response.getResult().get(i);
@@ -188,7 +187,7 @@ public class GetItems {
 
 	}
 
-	public static ArrayList getItemsList() throws ZabbixApiException {
+	public static ArrayList<ArrayList<Integer>> getItemsList() throws ZabbixApiException {
 		// // group by host
 		// ArrayList hostGroups = new reportGetHostGroups().getHostGroupdIdList();
 		// ArrayList itemsList = new ArrayList();
@@ -198,12 +197,12 @@ public class GetItems {
 		// ItemGetResponse response = getItems(hostidarr);
 		// ArrayList itemsList_pg = new ArrayList();
 
-		List hosts = new GetHosts().gethostsIdList();
-		ArrayList itemsList = new ArrayList();
+		List<List<Integer>> hosts = new GetHosts().gethostsIdList();
+		ArrayList<ArrayList<Integer>> itemsList = new ArrayList<ArrayList<Integer>>();
 		for (int k = 0; k < hosts.size(); k++) {
-			ArrayList hostidarr = (ArrayList) hosts.get(k);
-			ItemGetResponse response = getItems(hostidarr);
-			ArrayList itemsList_pg = new ArrayList();
+			List<Integer> hostidarr = (ArrayList<Integer>) hosts.get(k);
+			ItemGetResponse response = new GetItems().getItems(hostidarr);
+			ArrayList<Integer> itemsList_pg = new ArrayList<Integer>();
 
 			for (int i = 0; i < response.getResult().size(); i++) {
 				ItemObject myItemObject = response.getResult().get(i);
@@ -217,19 +216,19 @@ public class GetItems {
 		return itemsList;
 	}
 
-	public static ArrayList getItemsListByGroup() throws ZabbixApiException {
+	public static ArrayList<ArrayList<ArrayList<Integer>>> getItemsListByGroup() throws ZabbixApiException {
 		// group by host
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-		ArrayList itemsList = new ArrayList();
+		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+		ArrayList<ArrayList<ArrayList<Integer>>> itemsList = new ArrayList<ArrayList<ArrayList<Integer>>>();
 		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
-			ArrayList itemsList_pg = new ArrayList();
+			ArrayList<Integer> hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
+			ArrayList<ArrayList<Integer>> itemsList_pg = new ArrayList<ArrayList<Integer>>();
 			for (int k = 0; k < hostsList.size(); k++) {
 
-				ArrayList hostidarr = new ArrayList();
+				ArrayList<Integer> hostidarr = new ArrayList<Integer>();
 				hostidarr.add(hostsList.get(k));
-				ItemGetResponse response = getItems(hostidarr);
-				ArrayList itemsList_ph = new ArrayList();
+				ItemGetResponse response = new GetItems().getItems(hostidarr);
+				ArrayList<Integer> itemsList_ph = new ArrayList<Integer>();
 
 				for (int i = 0; i < response.getResult().size(); i++) {
 					ItemObject myItemObject = response.getResult().get(i);
@@ -245,55 +244,55 @@ public class GetItems {
 		return itemsList;
 	}
 
-	public static ArrayList getItemsListObjByGroup() throws ZabbixApiException {
-		// group by host
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-		ArrayList itemsListObjByGroup = new ArrayList();
-
-		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
-			ArrayList itemsList_pg = new ArrayList();
-
-			HashMap itemsListObj = new HashMap();
-			for (int k = 0; k < hostsList.size(); k++) {
-				HashMap itemsObj_pg = new HashMap();
-				ArrayList hostidarr = new ArrayList();
-				hostidarr.add(hostsList.get(k));
-				ItemGetResponse response = getItems(hostidarr);
-				ArrayList itemsList_ph = new ArrayList();
-
-				for (int i = 0; i < response.getResult().size(); i++) {
-					ItemObject myItemObject = response.getResult().get(i);
-					HashMap itemobj = new HashMap();
-					itemobj.put("itemname", myItemObject.getName());
-					itemobj.put("itemid", myItemObject.getItemid());
-					itemsList_ph.add(itemobj);
-				}
-				// System.out.println("hostid:" + hostsList.get(k) + " ; items:" +
-				// itemsList_ph);
-				itemsObj_pg.put("itemlist", itemsList_ph);
-				itemsObj_pg.put("hostid", hostidarr);
-				itemsList_pg.add(itemsObj_pg);
-			}
-			// System.out.println(itemsList_pg);
-			// itemsListObj.add(itemsList_pg);
-			itemsListObj.put("groupid", hostGroupsList.get(m));
-			itemsListObj.put("itemslistbyhost", itemsList_pg);
-
-			// System.out.println(itemsListObj);
-			itemsListObjByGroup.add(itemsListObj);
-		}
-		System.out.println(itemsListObjByGroup);
-		return itemsListObjByGroup;
-	}
+//	public static ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> getItemsListObjByGroup() throws ZabbixApiException {
+//		// group by host
+//		List<Integer> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+//		ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> itemsListObjByGroup = new ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>>();
+//
+//		for (int m = 0; m < hostGroupsList.size(); m++) {
+//			ArrayList<Integer> hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
+//			ArrayList<HashMap<String, ArrayList<?>>> itemsList_pg = new ArrayList<HashMap<String, ArrayList<?>>>();
+//
+//			HashMap<String, String> itemsListObj = new HashMap<String, String>();
+//			for (int k = 0; k < hostsList.size(); k++) {
+//				HashMap<String, ArrayList<?>> itemsObj_pg = new HashMap<String, ArrayList<?>>();
+//				ArrayList<Integer> hostidarr = new ArrayList<Integer>();
+//				hostidarr.add(hostsList.get(k));
+//				ItemGetResponse response = new GetItems().getItems(hostidarr);
+//				ArrayList<HashMap<String, String>> itemsList_ph = new ArrayList<HashMap<String, String>>();
+//
+//				for (int i = 0; i < response.getResult().size(); i++) {
+//					ItemObject myItemObject = response.getResult().get(i);
+//					HashMap<String, String> itemobj = new HashMap<String, String>();
+//					itemobj.put("itemname", myItemObject.getName());
+//					itemobj.put("itemid", String.valueOf(myItemObject.getItemid()));
+//					itemsList_ph.add(itemobj);
+//				}
+//				// System.out.println("hostid:" + hostsList.get(k) + " ; items:" +
+//				// itemsList_ph);
+//				itemsObj_pg.put("itemlist", itemsList_ph);
+//				itemsObj_pg.put("hostid", hostidarr);
+//				itemsList_pg.add(itemsObj_pg);
+//			}
+//			// System.out.println(itemsList_pg);
+//			// itemsListObj.add(itemsList_pg);
+//			itemsListObj.put("groupid", String.valueOf(hostGroupsList.get(m)));
+//			itemsListObj.put("itemslistbyhost", itemsList_pg);
+//
+//			// System.out.println(itemsListObj);
+//			itemsListObjByGroup.add(itemsListObj);
+//		}
+//		System.out.println(itemsListObjByGroup);
+//		return itemsListObjByGroup;
+//	}
 
 	public static String transKeyofName(String itemName, String key) {
-		String destinStr = "";
+//		String destinStr = "";
 		Pattern ptn = Pattern.compile("(?:\\$\\d*)");
 		Matcher m = ptn.matcher(itemName);
 		StringBuffer sb = new StringBuffer();
 		// List <ItemBean> allItemBean= new GetItems().getAllItems();
-		for (int i = 0; m.find(); i++) {
+		while (m.find()) {
 			String Replace = transKeyId2Name(key,
 					m.group().substring(m.group().indexOf("$") + 1, m.group().indexOf("$") + 2));
 			m.appendReplacement(sb, Replace);
@@ -305,7 +304,7 @@ public class GetItems {
 	public static String transKeyId2Name(String key, String keyId) {
 		String keyName = null;
 		String keyarray_s = key.substring(key.indexOf("[")+1,key.lastIndexOf("]"));
-		List keyarray = new ArrayList();
+		List<String> keyarray = new ArrayList<String>();
 		keyarray = Arrays.asList(keyarray_s.split(","));
 		for (int i = 0; i < keyarray.size(); i++) {
 			if (Integer.parseInt(keyId)-1 == i)

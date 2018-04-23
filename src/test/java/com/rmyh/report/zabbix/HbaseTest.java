@@ -41,7 +41,7 @@ public class HbaseTest {
 	}
 
 	public static void main(String[] args) throws Exception {
-		HbaseConnectionFactory.init(url);
+		HbaseConnectionFactory.init(url,"2181");
 		querytest("23726");
 
 	}

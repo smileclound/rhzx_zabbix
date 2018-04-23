@@ -17,7 +17,7 @@ public class GetAlertResponse {
 	    AlertGetRequest request = new AlertGetRequest();  
 	    AlertGetRequest.Params params = request.getParams();  
 	  
-	    ArrayList<Integer> hostIds = new ArrayList<Integer>();  
+//	    ArrayList<Integer> hostIds = new ArrayList<Integer>();  
 	    // params.setHostids(hostIds);  
 	    // 这里可以设指定的id值，也可以不设值。设值的话，取指定的内容，不设的话，获取全部的host  
 	    params.setHostids(hostids);  
@@ -31,7 +31,7 @@ public class GetAlertResponse {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();  
 	    AlertGetRequest request = new AlertGetRequest();  
-	    AlertGetRequest.Params params = request.getParams();  
+//	    AlertGetRequest.Params params = request.getParams();  
 	  
 //	    ArrayList<Integer> hostIds = new ArrayList<Integer>();  
 	    // params.setHostids(hostIds);  

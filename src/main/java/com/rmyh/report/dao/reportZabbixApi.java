@@ -11,10 +11,7 @@ public class reportZabbixApi{
     public static final String PASSWORD = "abc123"; 
     public static ZabbixApi zabbixApi = new ZabbixApi(ZBX_URL); 
     
-//    public static void main(String[] args) throws ZabbixApiException {
-//    	    
-//    	   zabbixApi.login(USERNAME,PASSWORD);  
-//    }
+
     
     public ZabbixApi getApi() {
     	return zabbixApi;

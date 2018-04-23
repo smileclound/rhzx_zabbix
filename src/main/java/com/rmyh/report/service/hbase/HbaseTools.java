@@ -31,7 +31,7 @@ import com.rmyh.report.bean.AlertBean;
 import com.rmyh.report.bean.ItemBean;
 import com.rmyh.report.bean.TriggerBean;
 import com.rmyh.report.bean.XNDataBean;
-import com.rmyh.report.bean.XNDataBeanInterface;
+//import com.rmyh.report.bean.XNDataBeanInterface;
 import com.rmyh.report.controller.General;
 import com.rmyh.report.dao.HbaseConnection;
 import com.rmyh.report.dao.HbaseConnectionFactory;
@@ -47,7 +47,9 @@ public class HbaseTools implements Serializable {
 
 	@SuppressWarnings("deprecation")
 	public void putsXNDataBean(List<XNDataBean> dataBeans, String tableName, long datePre, long dateNex) {
-		if (dataBeans == null) { dataBeans = new ArrayList();}
+		if (dataBeans == null) {
+			dataBeans = new ArrayList<XNDataBean>();
+		}
 		if (dataBeans != null && tableName != null && !tableName.trim().equals("")) {
 
 			HTable table = null;
@@ -59,16 +61,17 @@ public class HbaseTools implements Serializable {
 				hbCon = HbaseConnectionFactory.getHbaseConnection();
 				pool = Executors.newFixedThreadPool(50);
 				puts = new ArrayList<Put>();
-//				System.out.println(tableName+""+hbCon+""+pool);
+				// System.out.println(tableName+""+hbCon+""+pool);
 				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
 
 				table.setWriteBufferSize(104857600);
 
 				table.setAutoFlush(false);
 				if (dataBeans.size() != 0) {
-				for (XNDataBeanInterface dataBean : dataBeans) {
-					puts.add(putDataColumns(dataBean, tableName));
-				}}
+					for (XNDataBean dataBean : dataBeans) {
+						puts.add(putDataColumns(dataBean, tableName));
+					}
+				}
 				table.put(puts);
 				table.flushCommits();
 			} catch (Exception e) {
@@ -89,78 +92,82 @@ public class HbaseTools implements Serializable {
 
 				puts.clear();
 				puts = null;
-				writeDateLog(datePre, dateNex, "data", dataBeans.size());
+				writeDateLog(datePre, dateNex, "performance data", dataBeans.size());
 				dataBeans.clear();
 				dataBeans = null;
 				pool.shutdown();
 				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
-				
-//				try {
-//					hbCon.getConnection().close();
-//					System.out.println("hbcon close succ!");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
+				// try {
+				// hbCon.getConnection().close();
+				// System.out.println("hbcon close succ!");
+				// } catch (IOException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
 			}
 		}
 
 	}
-	
+
 	public void writeDateLog(long datePre, long dateNex, String str, int size) {
 		FileWriter fwriterlog = null;
 		FileWriter fwriterdate = null;
 		String property = System.getProperty("user.dir");
-		File filelog = new File(property+"/dateFns.log");
-		File filedate = new File(property+"/datePre.properties");
+		File filelog = new File(property + "/dateFns.log");
+		File filedate = new File(property + "/datePre.properties");
 		try {
-			fwriterlog = new FileWriter(filelog,true);
+			fwriterlog = new FileWriter(filelog, true);
 			fwriterdate = new FileWriter(filedate);
-			String contentlog = "\n"+"|finished insert "+size+" "+str+" between "+datePre+" and "+dateNex;
-			String contentdate = "datePre="+String.valueOf(dateNex);
+			String contentlog = "\n" + "|finished insert " + size + " " + str + " between " + datePre + " and "
+					+ dateNex;
+			String contentdate = "datePre=" + String.valueOf(dateNex);
 			fwriterlog.write(contentlog);
 			fwriterdate.write(contentdate);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
-				fwriterlog.flush();fwriterdate.flush();
-				fwriterlog.close();fwriterdate.close();
+				fwriterlog.flush();
+				fwriterdate.flush();
+				fwriterlog.close();
+				fwriterdate.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-	
+
 	public void writeDateLog(String dateNow, String str, int size) {
 		FileWriter fwriterlog = null;
-//		FileWriter fwriterdate = null;
+		// FileWriter fwriterdate = null;
 		String property = System.getProperty("user.dir");
-		File filelog = new File(property+"/dateFns.log");
-//		File filedate = new File(property+"/datePre.properties");
+		File filelog = new File(property + "/dateFns.log");
+		// File filedate = new File(property+"/datePre.properties");
 		try {
-			fwriterlog = new FileWriter(filelog,true);
-//			fwriterdate = new FileWriter(filedate);
-			String contentlog = "\n"+"|finished insert "+size+" "+str+" at "+dateNow;
-//			String contentdate = "itemDatePre="+String.valueOf(dateNex);
+			fwriterlog = new FileWriter(filelog, true);
+			// fwriterdate = new FileWriter(filedate);
+			String contentlog = "\n" + "|finished insert " + size + " " + str + " at " + dateNow;
+			// String contentdate = "itemDatePre="+String.valueOf(dateNex);
 			fwriterlog.write(contentlog);
-//			fwriterdate.write(contentdate);
+			// fwriterdate.write(contentdate);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
-				fwriterlog.flush();   // fwriterdate.flush();
-				fwriterlog.close();   // fwriterdate.close();
+				fwriterlog.flush(); // fwriterdate.flush();
+				fwriterlog.close(); // fwriterdate.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
 		}
 	}
-	
-	
+
 	@SuppressWarnings("deprecation")
-	public void putsItemDataBean(List<ItemBean> itemBeans, String tableName , String insertItemClock) {
-		if (itemBeans == null) { itemBeans = new ArrayList();}
+	public void putsItemDataBean(List<ItemBean> itemBeans, String tableName, String insertItemClock) {
+		if (itemBeans == null) {
+			itemBeans = new ArrayList<ItemBean>();
+		}
 		if (tableName != null && !tableName.trim().equals("")) {
 
 			HTable table = null;
@@ -175,12 +182,13 @@ public class HbaseTools implements Serializable {
 				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
 
 				table.setWriteBufferSize(104857600);
-				
+
 				table.setAutoFlush(false);
 				if (itemBeans.size() != 0) {
-				for (ItemBean itemBean : itemBeans) {
-					puts.add(putDataColumns(itemBean, tableName, insertItemClock));
-				}}
+					for (ItemBean itemBean : itemBeans) {
+						puts.add(putDataColumns(itemBean, tableName, insertItemClock));
+					}
+				}
 				table.put(puts);
 				table.flushCommits();
 			} catch (Exception e) {
@@ -206,22 +214,24 @@ public class HbaseTools implements Serializable {
 				itemBeans = null;
 				pool.shutdown();
 				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
-				
-//				try {
-//					hbCon.getConnection().close();
-//					System.out.println("hbcon close succ!");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
+				// try {
+				// hbCon.getConnection().close();
+				// System.out.println("hbcon close succ!");
+				// } catch (IOException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
 			}
 		}
 
 	}
 
 	@SuppressWarnings("deprecation")
-	public void putsTriggerDataBean(List<TriggerBean> triggerBeans, String tableName , String insertTriggerClock) {
-		if (triggerBeans == null) { triggerBeans = new ArrayList();}
+	public void putsTriggerDataBean(List<TriggerBean> triggerBeans, String tableName, String insertTriggerClock) {
+		if (triggerBeans == null) {
+			triggerBeans = new ArrayList<TriggerBean>();
+		}
 		if (tableName != null && !tableName.trim().equals("")) {
 
 			HTable table = null;
@@ -236,12 +246,13 @@ public class HbaseTools implements Serializable {
 				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
 
 				table.setWriteBufferSize(104857600);
-				
+
 				table.setAutoFlush(false);
 				if (triggerBeans.size() != 0) {
-				for (TriggerBean triggerBean : triggerBeans) {
-					puts.add(putDataColumns(triggerBean, tableName, insertTriggerClock));
-				}}
+					for (TriggerBean triggerBean : triggerBeans) {
+						puts.add(putDataColumns(triggerBean, tableName, insertTriggerClock));
+					}
+				}
 				table.put(puts);
 				table.flushCommits();
 			} catch (Exception e) {
@@ -267,28 +278,27 @@ public class HbaseTools implements Serializable {
 				triggerBeans = null;
 				pool.shutdown();
 				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
-				
-//				try {
-//					hbCon.getConnection().close();
-//					System.out.println("hbcon close succ!");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
+				// try {
+				// hbCon.getConnection().close();
+				// System.out.println("hbcon close succ!");
+				// } catch (IOException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
 			}
 		}
 
 	}
 
-	
 	public XNDataBean getValueByTransDetails(String tableName, String key) {
 		// TODO
 		HTable table = null;
 		HbaseConnection hbCon = null;
-		Class beanClass = null;
+		Class<? extends XNDataBean> beanClass = null;
 		Field[] fields = null;
 		XNDataBean tb = new XNDataBean();
-		beanClass = (Class) tb.getClass();
+		beanClass = (Class<? extends XNDataBean>) tb.getClass();
 		fields = beanClass.getFields();
 		String rowKey = key;
 		Get get = null;
@@ -346,10 +356,10 @@ public class HbaseTools implements Serializable {
 		return null;
 	}
 
-	public Put putDataColumns(XNDataBeanInterface db, String tableName) {
+	public Put putDataColumns(XNDataBean dataBean, String tableName) {
 		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
 
-		Class beanClass = null;
+		Class<? extends XNDataBean> beanClass = null;
 		Field[] fields = null;
 		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
 		Put put = null;
@@ -357,9 +367,9 @@ public class HbaseTools implements Serializable {
 
 		try {
 
-			if (db instanceof XNDataBean) {
-				XNDataBean tb = (XNDataBean) db;
-				beanClass = (Class) tb.getClass();
+			if (dataBean instanceof XNDataBean) {
+				XNDataBean tb = (XNDataBean) dataBean;
+				beanClass = (Class<? extends XNDataBean>) tb.getClass();
 				fields = beanClass.getFields();
 				String familyName = "";
 				String fieldName = "";
@@ -389,12 +399,11 @@ public class HbaseTools implements Serializable {
 		return put;
 
 	}
-	
-	
+
 	public Put putDataColumns(ItemBean db, String tableName, String insertItemClock) {
 		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
 
-		Class beanClass = null;
+		Class<? extends ItemBean> beanClass = null;
 		Field[] fields = null;
 		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
 		Put put = null;
@@ -404,7 +413,7 @@ public class HbaseTools implements Serializable {
 
 			if (db instanceof ItemBean) {
 				ItemBean tb = (ItemBean) db;
-				beanClass = (Class) tb.getClass();
+				beanClass = (Class<? extends ItemBean>) tb.getClass();
 				fields = beanClass.getFields();
 				new Date();
 				String familyName = "";
@@ -412,7 +421,7 @@ public class HbaseTools implements Serializable {
 				String value = "";
 
 				if (!tb.getKey().equals("")) {
-					put = new Put(Bytes.toBytes("T"+insertItemClock+tb.getKey()));
+					put = new Put(Bytes.toBytes("T" + insertItemClock + tb.getKey()));
 					put.setTTL(Long.parseLong("8640000000"));
 					for (Field field : fields) {
 						fieldName = field.getName();
@@ -439,7 +448,7 @@ public class HbaseTools implements Serializable {
 	public Put putDataColumns(TriggerBean db, String tableName, String insertItemClock) {
 		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
 
-		Class beanClass = null;
+		Class<? extends TriggerBean> beanClass = null;
 		Field[] fields = null;
 		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
 		Put put = null;
@@ -449,7 +458,7 @@ public class HbaseTools implements Serializable {
 
 			if (db instanceof TriggerBean) {
 				TriggerBean tb = (TriggerBean) db;
-				beanClass = (Class) tb.getClass();
+				beanClass = (Class<? extends TriggerBean>) tb.getClass();
 				fields = beanClass.getFields();
 				new Date();
 				String familyName = "";
@@ -457,7 +466,7 @@ public class HbaseTools implements Serializable {
 				String value = "";
 
 				if (!tb.getKey().equals("")) {
-					put = new Put(Bytes.toBytes("T"+insertItemClock+tb.getKey()));
+					put = new Put(Bytes.toBytes("T" + insertItemClock + tb.getKey()));
 					put.setTTL(Long.parseLong("8640000000"));
 					for (Field field : fields) {
 						fieldName = field.getName();
@@ -484,7 +493,7 @@ public class HbaseTools implements Serializable {
 	public Put putDataColumns(AlertBean db, String tableName) {
 		// 閿熸枻鎷烽敓鏂ゆ嫹TransMonResultBean閿熸枻鎷�
 
-		Class beanClass = null;
+		Class<? extends AlertBean> beanClass = null;
 		Field[] fields = null;
 		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓琛楄鎷�
 		Put put = null;
@@ -494,7 +503,7 @@ public class HbaseTools implements Serializable {
 
 			if (db instanceof AlertBean) {
 				AlertBean tb = (AlertBean) db;
-				beanClass = (Class) tb.getClass();
+				beanClass = (Class<? extends AlertBean>) tb.getClass();
 				fields = beanClass.getFields();
 				String familyName = "";
 				String fieldName = "";
@@ -524,22 +533,21 @@ public class HbaseTools implements Serializable {
 		return put;
 
 	}
-	
+
 	public List<XNDataBean> getValueByTimeWId(String tableName, long startTime, long stopTime, int itemId)
 			throws java.text.ParseException {
 		// String tableName, String startTime, String stopTime, Integer itemId,
 		// TODO
 		List<XNDataBean> transBeanList = new ArrayList<XNDataBean>();
-		Class beanClass = null;
+		Class<? extends XNDataBean> beanClass = null;
 		Field[] fields = null;
 		HTable table = null;
 		ResultScanner scanner = null;
 		SingleColumnValueFilter scanItemid = null;
- 
-		SimpleDateFormat sdfM = new SimpleDateFormat("yyyyMMddHHmm");
-			String startTimeS = sdf.format(new Date(startTime));
-			String stopTimeS = sdf.format(new Date(stopTime));
-	 
+
+		// SimpleDateFormat sdfM = new SimpleDateFormat("yyyyMMddHHmm");
+		String startTimeS = sdf.format(new Date(startTime));
+		String stopTimeS = sdf.format(new Date(stopTime));
 
 		// 閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓浠嬶紝閿熸枻鎷烽敓鐭櫢鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷峰師閿熸枻鎷�
 		FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
@@ -562,20 +570,20 @@ public class HbaseTools implements Serializable {
 
 			// 閿熸枻鎷烽敓鏂ゆ嫹鍊奸敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷壙鍑ゆ嫹閿熺禈ppName閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 
-			 scanItemid = new SingleColumnValueFilter(Bytes.toBytes("basic_info"),
-			 Bytes.toBytes("appName"),
-			 CompareFilter.CompareOp.EQUAL, Bytes.toBytes(itemId));
-			 scanItemid.setFilterIfMissing(true);
-			 filterList.addFilter(scanItemid);
+			scanItemid = new SingleColumnValueFilter(Bytes.toBytes("basic_info"), Bytes.toBytes("appName"),
+					CompareFilter.CompareOp.EQUAL, Bytes.toBytes(itemId));
+			scanItemid.setFilterIfMissing(true);
+			filterList.addFilter(scanItemid);
 
 			// 閿熸枻鎷烽敓鏂ゆ嫹鍊奸敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熷壙鍑ゆ嫹閿熺但ransType閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹
 
 			scan.setFilter(filterList);
 			scanner = table.getScanner(scan);
 			// 閿熸枻鎷烽敓鏂ゆ嫹鎵敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹閿熻锛屾枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹鎷ラ敓绲st閿熸枻鎷�
-			GO: for (Result result : scanner) {
+			// GO:
+			for (Result result : scanner) {
 				XNDataBean tb = new XNDataBean();
-				beanClass = (Class) tb.getClass();
+				beanClass = (Class<? extends XNDataBean>) tb.getClass();
 				fields = beanClass.getFields();
 				// 閿熷彨鏂嚖鎷烽敓鎴鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓绐栴垽鎷烽敓鏂ゆ嫹閿熸彮顏庢嫹閿熸枻鎷烽敓鏂ゆ嫹姘愰敓鏂ゆ嫹閿熸嵎纰夋嫹閿熸枻鎷烽敓鎻紮鎷烽敓鏂ゆ嫹鏆敓鏂ゆ嫹閿熸彮浼欐嫹閿熺粸鎲嬫嫹閿熸枻鎷烽敓鏂ゆ嫹scan
 
@@ -641,48 +649,48 @@ public class HbaseTools implements Serializable {
 		// 閿熸枻鎷疯閿熸枻鎷烽敓鏂ゆ嫹閿熸枻鎷烽敓鏂ゆ嫹涔滈敓锟�
 		return null;
 	}
-	
+
 	public XNDataBean getValueByTime(String tableName, long startTime, long stopTime, int itemId)
 			throws java.text.ParseException {
 		// String tableName, String startTime, String stopTime, Integer itemId,
 		// TODO
-		List<XNDataBean> transBeanList = new ArrayList<XNDataBean>();
-		Class beanClass = null;
+//		List<XNDataBean> transBeanList = new ArrayList<XNDataBean>();
+		Class<? extends XNDataBean> beanClass = null;
 		Field[] fields = null;
 		HTable table = null;
 		ResultScanner scanner = null;
-//		SingleColumnValueFilter scanItemid = null;
-//		SimpleDateFormat sdfM = new SimpleDateFormat("yyyyMMddHHmm");
-//			String startTimeS = sdf.format(new Date(startTime));
-//			String stopTimeS = sdf.format(new Date(stopTime));
-//		FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
+		// SingleColumnValueFilter scanItemid = null;
+		// SimpleDateFormat sdfM = new SimpleDateFormat("yyyyMMddHHmm");
+		// String startTimeS = sdf.format(new Date(startTime));
+		// String stopTimeS = sdf.format(new Date(stopTime));
+		// FilterList filterList = new FilterList(FilterList.Operator.MUST_PASS_ALL);
 		ExecutorService pool = Executors.newFixedThreadPool(50);
 		HbaseConnection hbCon = HbaseConnectionFactory.getHbaseConnection();
 		try {
 			table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName.trim()), pool);
 			Scan scan = new Scan();
 			scan.setCaching(10000);
-//			scan.setStartRow(Bytes.toBytes(startTime));
-//			long endTime = stopTime+1;
-//			scan.setStopRow(Bytes.toBytes(endTime+1));
-			String startRowS = "I"+itemId+"T"+startTime;
-			String stopRowS = "I"+itemId+"T"+stopTime;
+			// scan.setStartRow(Bytes.toBytes(startTime));
+			// long endTime = stopTime+1;
+			// scan.setStopRow(Bytes.toBytes(endTime+1));
+			String startRowS = "I" + itemId + "T" + startTime;
+			String stopRowS = "I" + itemId + "T" + stopTime;
 			scan.setStartRow(Bytes.toBytes(startRowS));
 			scan.setStopRow(Bytes.toBytes(stopRowS));
-//			 scanItemid = new SingleColumnValueFilter(Bytes.toBytes("basic_info"),
-//			 Bytes.toBytes("appName"),
-//			 CompareFilter.CompareOp.EQUAL, Bytes.toBytes(itemId));
-//			 scanItemid.setFilterIfMissing(true);
-//			 filterList.addFilter(scanItemid);
-//			scan.setFilter(filterList);
+			// scanItemid = new SingleColumnValueFilter(Bytes.toBytes("basic_info"),
+			// Bytes.toBytes("appName"),
+			// CompareFilter.CompareOp.EQUAL, Bytes.toBytes(itemId));
+			// scanItemid.setFilterIfMissing(true);
+			// filterList.addFilter(scanItemid);
+			// scan.setFilter(filterList);
 			scanner = table.getScanner(scan);
 			XNDataBean resultXNBean = new XNDataBean();
 			resultXNBean.setItemId(itemId);
 			float listvaluesum = 0;
 			int listnum = 0;
-			for (Result result : scanner) {   //GO:
+			for (Result result : scanner) { // GO:
 				XNDataBean tb = new XNDataBean();
-				beanClass = (Class) tb.getClass();
+				beanClass = (Class<? extends XNDataBean>) tb.getClass();
 				fields = beanClass.getFields();
 				for (Cell cell : result.rawCells()) {
 					for (Field field : fields) {
@@ -721,18 +729,26 @@ public class HbaseTools implements Serializable {
 				}
 				listvaluesum += Float.parseFloat(tb.getValue());
 				listnum++;
-				if(listnum==1) {resultXNBean.setValue_max(tb.getValue());resultXNBean.setValue_min(tb.getValue());}
-				if(General.isInteger(tb.getValue())) {if(Float.parseFloat(tb.getValue())>Float.parseFloat(resultXNBean.getValue_max())) {
+				if (listnum == 1) {
 					resultXNBean.setValue_max(tb.getValue());
-				}}
-				if(General.isInteger(tb.getValue())) {if(Float.parseFloat(tb.getValue())<Float.parseFloat(resultXNBean.getValue_min())) {
 					resultXNBean.setValue_min(tb.getValue());
-				}}
+				}
+				if (new General().isNum(tb.getValue())) {
+					if (Float.parseFloat(tb.getValue()) > Float.parseFloat(resultXNBean.getValue_max())) {
+						resultXNBean.setValue_max(tb.getValue());
+					}
+				}
+				if (new General().isNum(tb.getValue())) {
+					if (Float.parseFloat(tb.getValue()) < Float.parseFloat(resultXNBean.getValue_min())) {
+						resultXNBean.setValue_min(tb.getValue());
+					}
+				}
 
-//				transBeanList.add(tb);
+				// transBeanList.add(tb);
 			}
-			if(listnum!=0) {
-			resultXNBean.setValue_avg(String.valueOf(listvaluesum/listnum));}
+			if (listnum != 0) {
+				resultXNBean.setValue_avg(String.valueOf(listvaluesum / listnum));
+			}
 			// 閿熸枻鎷烽敓鎴鎷疯閿熸枻鎷烽敓锟�
 			return resultXNBean;
 		} catch (IOException e) {
@@ -759,7 +775,9 @@ public class HbaseTools implements Serializable {
 
 	@SuppressWarnings("deprecation")
 	public void putsAlertDataBean(List<AlertBean> dataBeans, String tableName, long datePre, long dateNex) {
-		if (dataBeans == null) { dataBeans = new ArrayList();}
+		if (dataBeans == null) {
+			dataBeans = new ArrayList<AlertBean>();
+		}
 		if (dataBeans != null && tableName != null && !tableName.trim().equals("")) {
 
 			HTable table = null;
@@ -771,16 +789,17 @@ public class HbaseTools implements Serializable {
 				hbCon = HbaseConnectionFactory.getHbaseConnection();
 				pool = Executors.newFixedThreadPool(50);
 				puts = new ArrayList<Put>();
-//				System.out.println(tableName+""+hbCon+""+pool);
+				// System.out.println(tableName+""+hbCon+""+pool);
 				table = (HTable) hbCon.getConnection().getTable(TableName.valueOf(tableName), pool);
 
 				table.setWriteBufferSize(104857600);
 
 				table.setAutoFlush(false);
 				if (dataBeans.size() != 0) {
-				for (AlertBean dataBean : dataBeans) {
-					puts.add(putDataColumns(dataBean, tableName));
-				}}
+					for (AlertBean dataBean : dataBeans) {
+						puts.add(putDataColumns(dataBean, tableName));
+					}
+				}
 				table.put(puts);
 				table.flushCommits();
 			} catch (Exception e) {
@@ -806,17 +825,17 @@ public class HbaseTools implements Serializable {
 				dataBeans = null;
 				pool.shutdown();
 				HbaseConnectionFactory.releaseHbaseConnection(hbCon);
-				
-//				try {
-//					hbCon.getConnection().close();
-//					System.out.println("hbcon close succ!");
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
+				// try {
+				// hbCon.getConnection().close();
+				// System.out.println("hbcon close succ!");
+				// } catch (IOException e) {
+				// // TODO Auto-generated catch block
+				// e.printStackTrace();
+				// }
 			}
 		}
 
 	}
-	
+
 }

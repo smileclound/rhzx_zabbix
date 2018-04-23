@@ -75,13 +75,13 @@ public class GetItemstest {
 
 	public static List<ItemBean> getAllItems() throws ZabbixApiException {
 		List<ItemBean> itemBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				List<ItemObject> itemList = getItemsObjList(hostId);
 				for (int k = 0; k < itemList.size(); k++) {
@@ -180,7 +180,7 @@ public class GetItemstest {
 		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 		ArrayList itemsList = new ArrayList();
 		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
+			ArrayList hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
 			ArrayList itemsList_pg = new ArrayList();
 			for (int k = 0; k < hostsList.size(); k++) {
 
@@ -209,7 +209,7 @@ public class GetItemstest {
 		ArrayList itemsListObjByGroup = new ArrayList();
 
 		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
+			ArrayList hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
 			ArrayList itemsList_pg = new ArrayList();
 
 			HashMap itemsListObj = new HashMap();

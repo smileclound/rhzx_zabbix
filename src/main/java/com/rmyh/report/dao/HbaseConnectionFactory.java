@@ -45,9 +45,9 @@ public class HbaseConnectionFactory implements Serializable{
 		HbaseConnectionFactory.connectionNum = connectionNum;
 	}
 
-	public static void init(String url) {
+	public static void init(String url, String port) {
 		
-		_Configuration.set("hbase.zookeeper.property.clientPort", "2181");
+		_Configuration.set("hbase.zookeeper.property.clientPort", port);
 		_Configuration.set("hbase.zookeeper.quorum", url);
 		
 		

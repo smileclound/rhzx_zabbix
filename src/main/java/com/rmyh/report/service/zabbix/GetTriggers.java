@@ -12,7 +12,6 @@ import com.rmyh.report.dao.reportZabbixApi;
 import com.zabbix4j.ZabbixApiException;
 import com.zabbix4j.application.ApplicationGetRequest;
 import com.zabbix4j.application.ApplicationGetResponse;
-import com.zabbix4j.application.ApplicationObject;
 import com.zabbix4j.trigger.TriggerGetRequest;
 import com.zabbix4j.trigger.TriggerGetResponse;
 import com.zabbix4j.trigger.TriggerGetResponse.Result;
@@ -22,20 +21,20 @@ import com.zabbix4j.trigger.FunctionObject;
 public class GetTriggers {
 
 	public static void main(String[] args) throws ZabbixApiException {
-		getAllTriggers_App();
+		new GetTriggers().getAllTriggers_App();
 	}
 
 	public static List<TriggerBean> getAllTriggers() throws ZabbixApiException {
-		List<TriggerBean> triggerBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+		List<TriggerBean> triggerBeans = new ArrayList<TriggerBean>();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
-				List<TriggerObject> triggerList = getTriggersObjList(hostId);
+				List<TriggerObject> triggerList = new GetTriggers().getTriggersObjList(hostId);
 
 				for (int k = 0; k < triggerList.size(); k++) {
 
@@ -58,21 +57,21 @@ public class GetTriggers {
 
 	}
 
-	public static List<TriggerBean> getAllTriggers_App() throws ZabbixApiException {
+	public List<TriggerBean> getAllTriggers_App() throws ZabbixApiException {
 		List <ItemBean> allItemBean= new GetItems().getAllItems_App(); 
-		List<TriggerBean> triggerBeans = new ArrayList();
-		List<HashMap> hostGroupList = new GetHostGroups().getHostGroupsObjList();
+		List<TriggerBean> triggerBeans = new ArrayList<TriggerBean>();
+		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
-			int groupId = (Integer) hostGroupList.get(i).get("groupId");
+			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
-				int hostId = (Integer) hostList.get(j).get("hostId");
+				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				String hostIp = (String) hostList.get(j).get("hostIp");
-				List<HashMap> applicationList = getApplicationObjList(hostId);
+				List<HashMap<String, String>> applicationList = new GetTriggers().getApplicationObjList(hostId);
 				for (int l = 0; l < applicationList.size(); l++) {
-					int applicationId = (Integer) applicationList.get(l).get("applicationId");
+					int applicationId = Integer.parseInt(applicationList.get(l).get("applicationId"));
 					String applicationName = (String) applicationList.get(l).get("applicationName");
 					List<Result> triggerList = getTriggersObjList_ByApp(applicationId);
 
@@ -85,7 +84,7 @@ public class GetTriggers {
 						triggerBean.setHostName(hostName);
 						triggerBean.setTriggerId((Integer) triggerList.get(k).getTriggerid());
 						triggerBean.setTriggerValue(triggerList.get(k).getValue());
-						List<FunctionObject> functionObject = new ArrayList();
+						List<FunctionObject> functionObject = new ArrayList<FunctionObject>();
 						functionObject = triggerList.get(k).getFunctions();
 						for (FunctionObject funcobj : functionObject) {
 								triggerBean.setTriggerText(transExpression(allItemBean,funcobj,triggerList.get(k).getExpression()));
@@ -105,9 +104,9 @@ public class GetTriggers {
 
 	}
 
-	public static List getApplicationObjList(int hostId) throws ZabbixApiException {
+	public List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
-		ArrayList<Integer> triggerids = new ArrayList<Integer>();
+//		ArrayList<Integer> triggerids = new ArrayList<Integer>();
 		zabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
@@ -120,10 +119,10 @@ public class GetTriggers {
 
 		ApplicationGetResponse response = zabbixApi.getApi().application().get(request);
 
-		List list = new ArrayList();
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < response.getResult().size(); i++) {
-			HashMap map = new HashMap();
-			map.put("applicationId", response.getResult().get(i).getApplicationid());
+			HashMap<String, String> map = new HashMap<String, String>();
+			map.put("applicationId", String.valueOf(response.getResult().get(i).getApplicationid()));
 			map.put("applicationName", response.getResult().get(i).getName());
 			list.add(map);
 			// System.out.println(map);
@@ -137,7 +136,7 @@ public class GetTriggers {
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
-		ArrayList appliIdArr = new ArrayList();
+		List<Integer> appliIdArr = new ArrayList<Integer>();
 		appliIdArr.add(appliId);
 		params.setApplicationids(appliIdArr);
 		params.setOutput("extend");
@@ -152,7 +151,7 @@ public class GetTriggers {
 		// params.setTriggerids(triggeridssss);
 		TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);
 
-		List<Result> triggersList = new ArrayList();
+		List<Result> triggersList = new ArrayList<Result>();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			Result myTriggerObject = response.getResult().get(i);
@@ -169,7 +168,7 @@ public class GetTriggers {
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
-		ArrayList hostids = new ArrayList();
+		List<Integer> hostids = new ArrayList<Integer>();
 		hostids.add(hostid);
 		params.setHostids(hostids);
 
@@ -177,7 +176,7 @@ public class GetTriggers {
 		return response;
 	}
 
-	public static TriggerGetResponse getTriggers(ArrayList hostsidarr) throws ZabbixApiException {
+	public TriggerGetResponse getTriggers(List<Integer> hostsidarr) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 		zabbixApi.login();
 
@@ -189,12 +188,12 @@ public class GetTriggers {
 		return response;
 	}
 
-	public static List getTriggersObjList(int hostid) throws ZabbixApiException {
+	public List<TriggerObject> getTriggersObjList(int hostid) throws ZabbixApiException {
 
-		ArrayList hostidarr = new ArrayList();
+		List<Integer> hostidarr = new ArrayList<Integer>();
 		hostidarr.add(hostid);
 		TriggerGetResponse response = getTriggers(hostidarr);
-		ArrayList triggersList = new ArrayList();
+		List<TriggerObject> triggersList = new ArrayList<TriggerObject>();
 
 		for (int i = 0; i < response.getResult().size(); i++) {
 			TriggerObject myTriggerObject = response.getResult().get(i);
@@ -205,7 +204,7 @@ public class GetTriggers {
 
 	}
 
-	public static ArrayList getTriggersList() throws ZabbixApiException {
+	public static ArrayList<ArrayList<Integer>> getTriggersList() throws ZabbixApiException {
 		// // group by host
 		// ArrayList hostGroups = new reportGetHostGroups().getHostGroupdIdList();
 		// ArrayList triggersList = new ArrayList();
@@ -215,12 +214,12 @@ public class GetTriggers {
 		// TriggerGetResponse response = getTriggers(hostidarr);
 		// ArrayList triggersList_pg = new ArrayList();
 
-		List hosts = new GetHosts().gethostsIdList();
-		ArrayList triggersList = new ArrayList();
+		List<List<Integer>> hosts = new GetHosts().gethostsIdList();
+		ArrayList<ArrayList<Integer>> triggersList = new ArrayList<ArrayList<Integer>>();
 		for (int k = 0; k < hosts.size(); k++) {
-			ArrayList hostidarr = (ArrayList) hosts.get(k);
-			TriggerGetResponse response = getTriggers(hostidarr);
-			ArrayList triggersList_pg = new ArrayList();
+			List<Integer> hostidarr = (List<Integer>) hosts.get(k);
+			TriggerGetResponse response = new GetTriggers().getTriggers(hostidarr);
+			ArrayList<Integer> triggersList_pg = new ArrayList<Integer>();
 
 			for (int i = 0; i < response.getResult().size(); i++) {
 				TriggerObject myTriggerObject = response.getResult().get(i);
@@ -234,19 +233,19 @@ public class GetTriggers {
 		return triggersList;
 	}
 
-	public static ArrayList getTriggersListByGroup() throws ZabbixApiException {
+	public static ArrayList<ArrayList<ArrayList<Integer>>> getTriggersListByGroup() throws ZabbixApiException {
 		// group by host
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-		ArrayList triggersList = new ArrayList();
+		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+		ArrayList<ArrayList<ArrayList<Integer>>> triggersList = new ArrayList<ArrayList<ArrayList<Integer>>>();
 		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
-			ArrayList triggersList_pg = new ArrayList();
+			ArrayList<Integer> hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
+			ArrayList<ArrayList<Integer>> triggersList_pg = new ArrayList<ArrayList<Integer>>();
 			for (int k = 0; k < hostsList.size(); k++) {
 
-				ArrayList hostidarr = new ArrayList();
+				ArrayList<Integer> hostidarr = new ArrayList<Integer>();
 				hostidarr.add(hostsList.get(k));
-				TriggerGetResponse response = getTriggers(hostidarr);
-				ArrayList triggersList_ph = new ArrayList();
+				TriggerGetResponse response = new GetTriggers().getTriggers(hostidarr);
+				ArrayList<Integer> triggersList_ph = new ArrayList<Integer>();
 
 				for (int i = 0; i < response.getResult().size(); i++) {
 					TriggerObject myTriggerObject = response.getResult().get(i);
@@ -262,63 +261,58 @@ public class GetTriggers {
 		return triggersList;
 	}
 
-	public static ArrayList getTriggersListObjByGroup() throws ZabbixApiException {
-		// group by host
-		List hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-		ArrayList triggersListObjByGroup = new ArrayList();
-
-		for (int m = 0; m < hostGroupsList.size(); m++) {
-			ArrayList hostsList = GetHosts.gethostsIdList((Integer) hostGroupsList.get(m));
-			ArrayList triggersList_pg = new ArrayList();
-
-			HashMap triggersListObj = new HashMap();
-			for (int k = 0; k < hostsList.size(); k++) {
-				HashMap triggersObj_pg = new HashMap();
-				ArrayList hostidarr = new ArrayList();
-				hostidarr.add(hostsList.get(k));
-				TriggerGetResponse response = getTriggers(hostidarr);
-				ArrayList triggersList_ph = new ArrayList();
-
-				for (int i = 0; i < response.getResult().size(); i++) {
-					TriggerObject myTriggerObject = response.getResult().get(i);
-					HashMap triggerobj = new HashMap();
-					// triggerobj.put("triggername", myTriggerObject.getName());
-					triggerobj.put("triggerid", myTriggerObject.getTriggerid());
-					triggersList_ph.add(triggerobj);
-				}
-				// System.out.println("hostid:" + hostsList.get(k) + " ; triggers:" +
-				// triggersList_ph);
-				triggersObj_pg.put("triggerlist", triggersList_ph);
-				triggersObj_pg.put("hostid", hostidarr);
-				triggersList_pg.add(triggersObj_pg);
-			}
-			// System.out.println(triggersList_pg);
-			// triggersListObj.add(triggersList_pg);
-			triggersListObj.put("groupid", hostGroupsList.get(m));
-			triggersListObj.put("triggerslistbyhost", triggersList_pg);
-
-			// System.out.println(triggersListObj);
-			triggersListObjByGroup.add(triggersListObj);
-		}
-		System.out.println(triggersListObjByGroup);
-		return triggersListObjByGroup;
-	}
+//	public static ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> getTriggersListObjByGroup() throws ZabbixApiException {
+//		// group by host
+//		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+//		ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> triggersListObjByGroup = new ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>>();
+//
+//		for (int m = 0; m < hostGroupsList.size(); m++) {
+//			ArrayList<Integer> hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
+//			ArrayList<HashMap<String, ArrayList<?>>> triggersList_pg = new ArrayList<HashMap<String, ArrayList<?>>>();
+//
+//			HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>> triggersListObj = new HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>();
+//			for (int k = 0; k < hostsList.size(); k++) {
+//				HashMap<String, ArrayList<?>> triggersObj_pg = new HashMap<String, ArrayList<?>>();
+//				ArrayList<Integer> hostidarr = new ArrayList<Integer>();
+//				hostidarr.add(hostsList.get(k));
+//				TriggerGetResponse response = new GetTriggers().getTriggers(hostidarr);
+//				ArrayList<HashMap<String, Integer>> triggersList_ph = new ArrayList<HashMap<String, Integer>>();
+//
+//				for (int i = 0; i < response.getResult().size(); i++) {
+//					TriggerObject myTriggerObject = response.getResult().get(i);
+//					HashMap<String, Integer> triggerobj = new HashMap<String, Integer>();
+//					// triggerobj.put("triggername", myTriggerObject.getName());
+//					triggerobj.put("triggerid", myTriggerObject.getTriggerid());
+//					triggersList_ph.add(triggerobj);
+//				}
+//				// System.out.println("hostid:" + hostsList.get(k) + " ; triggers:" +
+//				// triggersList_ph);
+//				triggersObj_pg.put("triggerlist", triggersList_ph);
+//				triggersObj_pg.put("hostid", hostidarr);
+//				triggersList_pg.add(triggersObj_pg);
+//			}
+//			// System.out.println(triggersList_pg);
+//			// triggersListObj.add(triggersList_pg);
+//			triggersListObj.put("groupid", hostGroupsList.get(m));
+//			triggersListObj.put("triggerslistbyhost", triggersList_pg);
+//
+//			// System.out.println(triggersListObj);
+//			triggersListObjByGroup.add(triggersListObj);
+//		}
+//		System.out.println(triggersListObjByGroup);
+//		return triggersListObjByGroup;
+//	}
 
 	public static String transExpression(List <ItemBean> allItemBean,FunctionObject funcobj, String string)
 			throws NumberFormatException, ZabbixApiException {
-		String destinStr = string;
 		Pattern ptn = Pattern.compile("(?:\\{\\d*})");
 		Matcher m = ptn.matcher(string);
 		StringBuffer sb = new StringBuffer();
 		// List <ItemBean> allItemBean= new GetItems().getAllItems();
-		for (int i = 0; m.find(); i++) {
-			if (true) {
+		for (; m.find();) {
 				String Replace = transFunctionId2Name(allItemBean, funcobj,
 						Integer.parseInt(m.group().substring(m.group().indexOf("{") + 1, m.group().indexOf("}"))));
 				m.appendReplacement(sb, Replace);
-			} else {
-				continue;
-			}
 
 		}
 		m.appendTail(sb);
@@ -327,11 +321,11 @@ public class GetTriggers {
 	}
 
 	public static String transFunctionId2Name(List <ItemBean> allItemBean, FunctionObject funcobj , int id) throws ZabbixApiException {
-		String destinStr = new String();
-		String hostName = "", itemName = "", itemKey = "";
+		new String();
+		String hostName = "", itemKey = "";
 		for(ItemBean bean:allItemBean) {
 			if(bean.getItemId() == funcobj.getItemid()) {
-				hostName = bean.getHostName(); itemName = bean.getItemName(); itemKey = bean.getItemKey();
+				hostName = bean.getHostName(); bean.getItemName(); itemKey = bean.getItemKey();
 			}
 		}
 
