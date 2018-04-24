@@ -49,7 +49,7 @@ public class GetItems {
 
 			}
 		}
-		System.out.println(itemBeans);
+//		System.out.println(itemBeans);
 		return itemBeans;
 
 	}
@@ -208,11 +208,11 @@ public class GetItems {
 				ItemObject myItemObject = response.getResult().get(i);
 				itemsList_pg.add(myItemObject.getItemid());
 			}
-			System.out.println("hostid:" + hosts.get(k) + "itemsid:" + itemsList_pg);
+//			System.out.println("hostid:" + hosts.get(k) + "itemsid:" + itemsList_pg);
 			itemsList.add(itemsList_pg);
 
 		}
-		System.out.println(itemsList);
+//		System.out.println(itemsList);
 		return itemsList;
 	}
 
@@ -234,7 +234,7 @@ public class GetItems {
 					ItemObject myItemObject = response.getResult().get(i);
 					itemsList_ph.add(myItemObject.getItemid());
 				}
-				System.out.println("hostid:" + hostsList.get(k) + "itemsid:" + itemsList_ph);
+//				System.out.println("hostid:" + hostsList.get(k) + "itemsid:" + itemsList_ph);
 				itemsList_pg.add(itemsList_ph);
 
 			}

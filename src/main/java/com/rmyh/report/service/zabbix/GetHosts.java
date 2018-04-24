@@ -69,10 +69,10 @@ public class GetHosts {
 
 			}
 			hostsIdList.add(hostIdList);
-			System.out.println("groupid_" + hostGroupsList.get(k) + "\'s hostIdList:" + hostIdList);
+//			System.out.println("groupid_" + hostGroupsList.get(k) + "\'s hostIdList:" + hostIdList);
 
 		}
-		System.out.println("allGroupshostsIdList:" + hostsIdList);
+//		System.out.println("allGroupshostsIdList:" + hostsIdList);
 		return hostsIdList;
 	}
 
@@ -95,7 +95,7 @@ public class GetHosts {
 			}
 
 		}
-		System.out.println("groupid_" + groupid + "'s hostIdList:" + hostIdList);
+//		System.out.println("groupid_" + groupid + "'s hostIdList:" + hostIdList);
 		return hostIdList;
 
 	}
@@ -126,10 +126,10 @@ public class GetHosts {
 
 			}
 			hostsObjList.add(hostObjList);
-			System.out.println("groupid_" + hostGroupsList.get(k) + "\'s hostIdList:" + hostObjList);
+//			System.out.println("groupid_" + hostGroupsList.get(k) + "\'s hostIdList:" + hostObjList);
 
 		}
-		System.out.println("allGroupshostsIdList:" + hostsObjList);
+//		System.out.println("allGroupshostsIdList:" + hostsObjList);
 		return hostsObjList;
 	}
 

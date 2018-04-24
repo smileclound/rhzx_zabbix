@@ -52,7 +52,7 @@ public class GetTriggers {
 
 			}
 		}
-		System.out.println(triggerBeans);
+//		System.out.println(triggerBeans);
 		return triggerBeans;
 
 	}
@@ -99,7 +99,7 @@ public class GetTriggers {
 				}
 			}
 		}
-		System.out.println(triggerBeans);
+//		System.out.println(triggerBeans);
 		return triggerBeans;
 
 	}
@@ -225,11 +225,11 @@ public class GetTriggers {
 				TriggerObject myTriggerObject = response.getResult().get(i);
 				triggersList_pg.add(myTriggerObject.getTriggerid());
 			}
-			System.out.println("hostid:" + hosts.get(k) + "triggersid:" + triggersList_pg);
+//			System.out.println("hostid:" + hosts.get(k) + "triggersid:" + triggersList_pg);
 			triggersList.add(triggersList_pg);
 
 		}
-		System.out.println(triggersList);
+//		System.out.println(triggersList);
 		return triggersList;
 	}
 
@@ -251,7 +251,7 @@ public class GetTriggers {
 					TriggerObject myTriggerObject = response.getResult().get(i);
 					triggersList_ph.add(myTriggerObject.getTriggerid());
 				}
-				System.out.println("hostid:" + hostsList.get(k) + "triggersid:" + triggersList_ph);
+//				System.out.println("hostid:" + hostsList.get(k) + "triggersid:" + triggersList_ph);
 				triggersList_pg.add(triggersList_ph);
 
 			}

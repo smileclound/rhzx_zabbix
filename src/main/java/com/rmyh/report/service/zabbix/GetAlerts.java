@@ -35,7 +35,7 @@ public class GetAlerts {
 			}
 			alertCountBeans.add(alertbean);
 		}
-		System.out.println(alertCountBeans);
+//		System.out.println(alertCountBeans);
 		return alertCountBeans;
 	}
 

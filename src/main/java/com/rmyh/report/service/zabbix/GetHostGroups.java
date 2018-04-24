@@ -51,7 +51,7 @@ public class GetHostGroups {
 				// System.out.println("id:"+myHostGroupObject.getGroupid()+";name:"+myHostGroupObject.getName());
 			}
 		}
-		System.out.println("hostGroupdIdList:" + hostGroupdIdList);
+//		System.out.println("hostGroupdIdList:" + hostGroupdIdList);
 		return hostGroupdIdList;
 	}
 

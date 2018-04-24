@@ -64,11 +64,7 @@ public class DataInsert implements Job {
 		List<AlertBean> alertBeans = new GetAlerts().getBean();
 		
 		HbaseConnectionFactory.init(zoourl,zooport);
-		
-		// Insert performace data between datepre and datenex
-		HbaseTools hbtdatains = new HbaseTools();
-		hbtdatains.putsXNDataBean(dataBeans, XNTableName, datePre, dateNex);
-		
+
 		//Insert items at insertclock
 		HbaseTools hbtitemins = new HbaseTools();
 		hbtitemins.putsItemDataBean(itemBeans, ItemsTableName, insertClock);
@@ -77,13 +73,16 @@ public class DataInsert implements Job {
 //		hbtitemins.putsDataBean(eventBeans, EventsTableName, insertItemClock);
 		
 		// Insert trigger at insertclock
-		HbaseTools hbttriggerins = new HbaseTools();
-		hbttriggerins.putsTriggerDataBean(triggerBeans, TriggerTableName, insertClock);
+//		HbaseTools hbttriggerins = new HbaseTools();
+		hbtitemins.putsTriggerDataBean(triggerBeans, TriggerTableName, insertClock);
+			
+		// Insert performace data between datepre and datenex
+//		HbaseTools hbtdatains = new HbaseTools();
+		hbtitemins.putsXNDataBean(dataBeans, XNTableName, datePre, dateNex);
 		
 		// Insert alert data between datepre and datenex
-		HbaseTools hbtalertins = new HbaseTools();
-		hbtalertins.putsAlertDataBean(alertBeans, AlertsTableName, datePre, dateNex);
-		
+//		HbaseTools hbtalertins = new HbaseTools();
+		hbtitemins.putsAlertDataBean(alertBeans, AlertsTableName, datePre, dateNex);
 		// logg4j. getTime +""+data insert hbase success
 		
 		// close hbase connection

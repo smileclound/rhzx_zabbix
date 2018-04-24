@@ -34,7 +34,7 @@ public class GetTriggerBeanList {
 			bean.setTriggerId(sigobj.getTriggerid());
 			beans.add(bean);
 		}
-		System.out.println(beans);
+//		System.out.println(beans);
 
 		return beans;
 
