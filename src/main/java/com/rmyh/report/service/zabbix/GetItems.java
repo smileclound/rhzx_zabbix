@@ -29,7 +29,7 @@ public class GetItems {
 		for (int i = 0; i < hostGroupList.size(); i++) {
 			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = GetHosts.gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
 				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
@@ -60,12 +60,12 @@ public class GetItems {
 		for (int i = 0; i < hostGroupList.size(); i++) {
 			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = GetHosts.gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
 				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				String hostIp = (String) hostList.get(j).get("hostIp");
-				List<HashMap<String, String>> applicationList = new GetItems().getApplicationObjList(hostId);
+				List<HashMap<String, String>> applicationList = getApplicationObjList(hostId);
 				for (int l = 0; l < applicationList.size(); l++) {
 					int applicationId = Integer.parseInt(applicationList.get(l).get("applicationId"));
 					String applicationName = (String) applicationList.get(l).get("applicationName");
@@ -97,7 +97,7 @@ public class GetItems {
 
 	}
 
-	public List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
+	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
 //		ArrayList<Integer> itemids = new ArrayList<Integer>();
 		zabbixApi.login();

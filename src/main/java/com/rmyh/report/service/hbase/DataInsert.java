@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+//import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
@@ -36,7 +38,8 @@ public class DataInsert implements Job {
 	public static final String zooport = "2181";
 
 	//log4j
-	Logger logger = Logger.getLogger(DataInsert.class);
+//	public static Logger logger = Logger.getLogger(DataInsert.class);
+	public static Logger logger = General.logger(new DataInsert());
 	
 	// Insert date main function
 	public static void dataInsert(long datePre, long dateNex) throws ZabbixApiException {
@@ -67,6 +70,7 @@ public class DataInsert implements Job {
 
 		//Insert items at insertclock
 		HbaseTools hbtitemins = new HbaseTools();
+		logger.info(new Date()+""+"start putsItemDataBean");
 		hbtitemins.putsItemDataBean(itemBeans, ItemsTableName, insertClock);
 //		event data
 //		HbaseTools hbteventins = new HbaseTools();
@@ -74,14 +78,17 @@ public class DataInsert implements Job {
 		
 		// Insert trigger at insertclock
 //		HbaseTools hbttriggerins = new HbaseTools();
+		logger.info(new Date()+""+"start putsTriggerDataBean");
 		hbtitemins.putsTriggerDataBean(triggerBeans, TriggerTableName, insertClock);
 			
 		// Insert performace data between datepre and datenex
 //		HbaseTools hbtdatains = new HbaseTools();
+		logger.info(new Date()+""+"start putsXNDataBean");
 		hbtitemins.putsXNDataBean(dataBeans, XNTableName, datePre, dateNex);
 		
 		// Insert alert data between datepre and datenex
 //		HbaseTools hbtalertins = new HbaseTools();
+		logger.info(new Date()+""+"start putsAlertDataBean");
 		hbtitemins.putsAlertDataBean(alertBeans, AlertsTableName, datePre, dateNex);
 		// logg4j. getTime +""+data insert hbase success
 		
@@ -94,11 +101,11 @@ public class DataInsert implements Job {
 		long dateNow = new Date().getTime();
 		long datePre;
 		try {
-			datePre = Long.parseLong(new General().initProp("datePre.properties").getProperty("datePre"));
+			datePre = Long.parseLong(General.initProp("datePre.properties").getProperty("datePre"));
 			long dateNex = dateNow < (datePre + 2592000000l) ? dateNow : (datePre + 2592000000l);
 			dataInsert(datePre, dateNex);
 			// logger succ
-			logger.info(new Date()+"succ! insert data between "+datePre+" and "+dateNex+"");
+			logger.info(new Date()+"succ!"+"datePre:"+datePre+" and "+"dateNex:"+dateNex+";\n");
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 			logger.error(e);

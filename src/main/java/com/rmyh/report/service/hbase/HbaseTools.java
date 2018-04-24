@@ -92,6 +92,7 @@ public class HbaseTools implements Serializable {
 
 				puts.clear();
 				puts = null;
+				logger.info(new Date()+""+"Successfully insert performance data;");
 				writeDateLog(datePre, dateNex, "performance data", dataBeans.size());
 				dataBeans.clear();
 				dataBeans = null;
@@ -209,6 +210,7 @@ public class HbaseTools implements Serializable {
 
 				puts.clear();
 				puts = null;
+				logger.info(new Date()+""+"Successfully insert items;");
 				writeDateLog(insertItemClock, "items", itemBeans.size());
 				itemBeans.clear();
 				itemBeans = null;
@@ -273,6 +275,7 @@ public class HbaseTools implements Serializable {
 
 				puts.clear();
 				puts = null;
+				logger.info(new Date()+""+"Successfully insert triggers;");
 				writeDateLog(insertTriggerClock, "triggers", triggerBeans.size());
 				triggerBeans.clear();
 				triggerBeans = null;
@@ -733,12 +736,12 @@ public class HbaseTools implements Serializable {
 					resultXNBean.setValue_max(tb.getValue());
 					resultXNBean.setValue_min(tb.getValue());
 				}
-				if (new General().isNum(tb.getValue())) {
+				if (General.isNum(tb.getValue())) {
 					if (Float.parseFloat(tb.getValue()) > Float.parseFloat(resultXNBean.getValue_max())) {
 						resultXNBean.setValue_max(tb.getValue());
 					}
 				}
-				if (new General().isNum(tb.getValue())) {
+				if (General.isNum(tb.getValue())) {
 					if (Float.parseFloat(tb.getValue()) < Float.parseFloat(resultXNBean.getValue_min())) {
 						resultXNBean.setValue_min(tb.getValue());
 					}
@@ -820,6 +823,7 @@ public class HbaseTools implements Serializable {
 
 				puts.clear();
 				puts = null;
+				logger.info(new Date()+""+"Successfully insert alert data;");
 				writeDateLog(datePre, dateNex, "alert data", dataBeans.size());
 				dataBeans.clear();
 				dataBeans = null;

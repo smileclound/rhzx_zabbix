@@ -9,7 +9,7 @@ import com.zabbix4j.alert.AlertGetResponse;
 
 public class GetAlertResponse {
 	
-	public AlertGetResponse getAlert(int hostid) throws ZabbixApiException {  
+	public static AlertGetResponse getAlert(int hostid) throws ZabbixApiException {  
 		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> hostids = new ArrayList<Integer>();
     	hostids.add(hostid);

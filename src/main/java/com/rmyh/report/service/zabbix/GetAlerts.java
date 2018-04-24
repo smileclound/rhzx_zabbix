@@ -45,13 +45,13 @@ public class GetAlerts {
 		for (int i = 0; i < hostGroupList.size(); i++) {
 			int groupId = Integer.parseInt(hostGroupList.get(i).get("groupId"));
 //			String groupName = (String) hostGroupList.get(i).get("groupName");
-			List<HashMap<String, String>> hostList = new GetHosts().gethostsObjList(groupId);
+			List<HashMap<String, String>> hostList = GetHosts.gethostsObjList(groupId);
 			for (int j = 0; j < hostList.size(); j++) {
 				int hostId = Integer.parseInt(hostList.get(j).get("hostId"));
 				String hostName = (String) hostList.get(j).get("hostName");
 				String hostIp = (String) hostList.get(j).get("hostIp");
 
-				AlertGetResponse AlertObj = new GetAlertResponse().getAlert(hostId);
+				AlertGetResponse AlertObj = GetAlertResponse.getAlert(hostId);
 				List<AlertBean> beans = new ArrayList<AlertBean>();
 
 				for (int k = 0; k < AlertObj.getResult().size(); k++) {

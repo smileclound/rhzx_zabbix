@@ -133,7 +133,7 @@ public class GetHosts {
 		return hostsObjList;
 	}
 
-	public List<HashMap<String, String>> gethostsObjList(int groupid) throws ZabbixApiException {
+	public static List<HashMap<String, String>> gethostsObjList(int groupid) throws ZabbixApiException {
 
 		ArrayList<Integer> groupidarr = new ArrayList<Integer>();
 		groupidarr.add(groupid);
