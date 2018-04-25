@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,24 +18,24 @@ import com.zabbix4j.hostinteface.HostInterfaceObject;
 
 public class GetHosts {
 
-	 public static void main(String[] args) throws ZabbixApiException {
-	 gethostsObjList();
-	 }
+//	 public static void main(String[] args) throws ZabbixApiException {
+//	 gethostsObjList();
+//	 }
 
-	public static HostGetResponse getHost(ArrayList<Integer> groupids) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public static HostGetResponse getHost(ArrayList<Integer> groupids) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		HostGetRequest request = new HostGetRequest();
 		HostGetRequest.Params params = request.getParams();
 
 		params.setGroupids(groupids);
-		HostGetResponse response = zabbixApi.getApi().host().get(request);
+		HostGetResponse response = reportZabbixApi.getApi().host().get(request);
 		return response;
 	}
-	public static HostInterfaceGetResponse getHostInterface(int hostId) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public static HostInterfaceGetResponse getHostInterface(int hostId) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		HostInterfaceGetRequest request = new HostInterfaceGetRequest();
 		HostInterfaceGetRequest.Params params = request.getParams();
@@ -42,11 +43,11 @@ public class GetHosts {
 		hostIdsList.add(hostId);
 		params.setHostids(hostIdsList);
 
-		HostInterfaceGetResponse response = zabbixApi.getApi().hostInterface().get(request);
+		HostInterfaceGetResponse response = reportZabbixApi.getApi().hostInterface().get(request);
 		return response;
 	}
 
-	public List<List<Integer>> gethostsIdList() throws ZabbixApiException {
+	public List<List<Integer>> gethostsIdList() throws ZabbixApiException, IOException {
 		List<Integer> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 
 		List<List<Integer>> hostsIdList = new ArrayList<List<Integer>>();
@@ -76,7 +77,7 @@ public class GetHosts {
 		return hostsIdList;
 	}
 
-	public ArrayList<Integer> gethostsIdList(int groupid) throws ZabbixApiException {
+	public ArrayList<Integer> gethostsIdList(int groupid) throws ZabbixApiException, IOException {
 
 		ArrayList<Integer> groupidarr = new ArrayList<Integer>();
 		groupidarr.add(groupid);
@@ -100,7 +101,7 @@ public class GetHosts {
 
 	}
 
-	public static ArrayList<ArrayList<HashMap<String, String>>> gethostsObjList() throws ZabbixApiException {
+	public static ArrayList<ArrayList<HashMap<String, String>>> gethostsObjList() throws ZabbixApiException, IOException {
 		List<Integer> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 		ArrayList<ArrayList<HashMap<String, String>>> hostsObjList = new ArrayList<ArrayList<HashMap<String, String>>>();
 		for (int k = 0; k < hostGroupsList.size(); k++) {
@@ -133,7 +134,7 @@ public class GetHosts {
 		return hostsObjList;
 	}
 
-	public static List<HashMap<String, String>> gethostsObjList(int groupid) throws ZabbixApiException {
+	public static List<HashMap<String, String>> gethostsObjList(int groupid) throws ZabbixApiException, IOException {
 
 		ArrayList<Integer> groupidarr = new ArrayList<Integer>();
 		groupidarr.add(groupid);

@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,9 +18,9 @@ public class GetHostGroups {
 	// getHostGroupsObjList();
 	// }
 
-	public HostgroupGetResponse getHostGroup() throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public HostgroupGetResponse getHostGroup() throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		HostgroupGetRequest request = new HostgroupGetRequest();
 		// HostgroupGetRequest.Params params = request.getParams();
@@ -31,11 +32,11 @@ public class GetHostGroups {
 		// params.setSelectTemplates(null);
 		// params.setFilter(null);
 
-		HostgroupGetResponse response = zabbixApi.getApi().hostgroup().get(request);
+		HostgroupGetResponse response = reportZabbixApi.getApi().hostgroup().get(request);
 		return response;
 	}
 
-	public List<Integer> getHostGroupdIdList() throws ZabbixApiException {
+	public List<Integer> getHostGroupdIdList() throws ZabbixApiException, IOException {
 		GetHostGroups myGetHostGroups = new GetHostGroups();
 		HostgroupGetResponse response = myGetHostGroups.getHostGroup();
 		List<Integer> hostGroupdIdList = new ArrayList<Integer>();
@@ -55,7 +56,7 @@ public class GetHostGroups {
 		return hostGroupdIdList;
 	}
 
-	public List<HashMap<String, String>> getHostGroupsObjList() throws ZabbixApiException {
+	public List<HashMap<String, String>> getHostGroupsObjList() throws ZabbixApiException, IOException {
 		GetHostGroups myGetHostGroups = new GetHostGroups();
 		HostgroupGetResponse response = myGetHostGroups.getHostGroup();
 		List<HashMap<String, String>> hostGroupObjList = new ArrayList<HashMap<String, String>>();

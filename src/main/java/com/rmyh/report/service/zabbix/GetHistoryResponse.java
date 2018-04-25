@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import com.rmyh.report.dao.reportZabbixApi;
 import com.zabbix4j.ZabbixApiException;
@@ -13,10 +14,9 @@ public class GetHistoryResponse {
 //    } 
     
     
-	public HistoryGetResponse getHistory(ArrayList<Integer> itemids) throws ZabbixApiException {  
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-
-		zabbixApi.login();  
+	public HistoryGetResponse getHistory(ArrayList<Integer> itemids) throws ZabbixApiException, IOException {  
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();  
 	    HistoryGetRequest request = new HistoryGetRequest();  
 	    HistoryGetRequest.Params params = request.getParams();  
 	  
@@ -26,15 +26,15 @@ public class GetHistoryResponse {
 	    params.setHostids(null);  
 
 	    params.setItemids(itemids);
-	    HistoryGetResponse response = zabbixApi.getApi().history().get(request);  
+	    HistoryGetResponse response = reportZabbixApi.getApi().history().get(request);  
 	  
 	    return response;  
 	    }  
-	public HistoryGetResponse getHistory(int itemid, long datePre, long dateNex) throws ZabbixApiException {  
-		reportZabbixApi zabbixApi = new reportZabbixApi();
+	public HistoryGetResponse getHistory(int itemid, long datePre, long dateNex) throws ZabbixApiException, IOException {  
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> itemids = new ArrayList<Integer>();
 	    itemids.add(itemid);
-		zabbixApi.login();  
+	    reportZabbixApi.login();  
 	    HistoryGetRequest request = new HistoryGetRequest();  
 	    HistoryGetRequest.Params params = request.getParams();  
 	  
@@ -48,7 +48,7 @@ public class GetHistoryResponse {
 	    params.setTime_from(datePre/1000);
 	    params.setTime_till(dateNex/1000);
 	 
-	    HistoryGetResponse response = zabbixApi.getApi().history().get(request);  
+	    HistoryGetResponse response = reportZabbixApi.getApi().history().get(request);  
 	    return response;  
 	    }  
 	      

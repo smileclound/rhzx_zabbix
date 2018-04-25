@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import org.apache.hadoop.hbase.Cell;
@@ -113,26 +114,34 @@ public class HbaseTools implements Serializable {
 
 	public void writeDateLog(long datePre, long dateNex, String str, int size) {
 		FileWriter fwriterlog = null;
-		FileWriter fwriterdate = null;
+//		FileWriter fwriterdate = null;
+		try {
+			Properties prop = General.initProp("prop.properties");
+			prop.setProperty("datePre", String.valueOf(dateNex));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		String property = System.getProperty("user.dir");
 		File filelog = new File(property + "/dateFns.log");
-		File filedate = new File(property + "/datePre.properties");
+//		File filedate = new File(property + "/datePre.properties");
 		try {
 			fwriterlog = new FileWriter(filelog, true);
-			fwriterdate = new FileWriter(filedate);
+//			fwriterdate = new FileWriter(filedate);
 			String contentlog = "\n" + "|finished insert " + size + " " + str + " between " + datePre + " and "
 					+ dateNex;
-			String contentdate = "datePre=" + String.valueOf(dateNex);
+//			String contentdate = "datePre=" + String.valueOf(dateNex);
 			fwriterlog.write(contentlog);
-			fwriterdate.write(contentdate);
+//			fwriterdate.write(contentdate);
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		} finally {
 			try {
 				fwriterlog.flush();
-				fwriterdate.flush();
+//				fwriterdate.flush();
 				fwriterlog.close();
-				fwriterdate.close();
+//				fwriterdate.close();
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}

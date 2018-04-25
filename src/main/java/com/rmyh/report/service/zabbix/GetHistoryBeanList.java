@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class GetHistoryBeanList extends ItemBean {
 //		getBean(itemBeans,23294,1407776000000l,1530368000000l);
 //	}
 //	
-	public List<XNDataBean> getBean(List<ItemBean> itemBeans, int itemId, long datePre,long dateNex) throws ZabbixApiException {
+	public List<XNDataBean> getBean(List<ItemBean> itemBeans, int itemId, long datePre,long dateNex) throws ZabbixApiException, IOException {
 		HistoryGetResponse historyObj = new GetHistoryResponse().getHistory(itemId, datePre, dateNex);
 		List<XNDataBean> beans = new ArrayList<XNDataBean>();
 //		List<ItemBean> itemBeans = new GetItems().getAllItems();

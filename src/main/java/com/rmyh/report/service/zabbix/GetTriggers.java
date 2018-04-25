@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +21,11 @@ import com.zabbix4j.trigger.FunctionObject;
 
 public class GetTriggers {
 
-	public static void main(String[] args) throws ZabbixApiException {
-		new GetTriggers().getAllTriggers_App();
-	}
+//	public static void main(String[] args) throws ZabbixApiException {
+//		new GetTriggers().getAllTriggers_App();
+//	}
 
-	public static List<TriggerBean> getAllTriggers() throws ZabbixApiException {
+	public static List<TriggerBean> getAllTriggers() throws ZabbixApiException, IOException {
 		List<TriggerBean> triggerBeans = new ArrayList<TriggerBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
@@ -57,7 +58,7 @@ public class GetTriggers {
 
 	}
 
-	public List<TriggerBean> getAllTriggers_App() throws ZabbixApiException {
+	public List<TriggerBean> getAllTriggers_App() throws ZabbixApiException, IOException {
 		List<ItemBean> allItemBean = new GetItems().getAllItems_App();
 		List<TriggerBean> triggerBeans = new ArrayList<TriggerBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
@@ -108,10 +109,10 @@ public class GetTriggers {
 
 	}
 
-	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
+	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
 		// ArrayList<Integer> triggerids = new ArrayList<Integer>();
-		zabbixApi.login();
+		reportZabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
 
@@ -121,7 +122,7 @@ public class GetTriggers {
 		// 这里可以设指定的id值，也可以不设值。设值的话，取指定的内容，不设的话，获取全部的host
 		// params.setHostids(hostIds);
 
-		ApplicationGetResponse response = zabbixApi.getApi().application().get(request);
+		ApplicationGetResponse response = reportZabbixApi.getApi().application().get(request);
 
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < response.getResult().size(); i++) {
@@ -134,9 +135,9 @@ public class GetTriggers {
 		return list;
 	}
 
-	public static List<Result> getTriggersObjList_ByApp(int appliId) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public static List<Result> getTriggersObjList_ByApp(int appliId) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
@@ -153,7 +154,7 @@ public class GetTriggers {
 		// ArrayList<Integer> triggeridssss = new ArrayList();
 		// triggeridssss.add(13570);
 		// params.setTriggerids(triggeridssss);
-		TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);
+		TriggerGetResponse response = reportZabbixApi.getApi().trigger().get(request);
 
 		List<Result> triggersList = new ArrayList<Result>();
 
@@ -166,9 +167,9 @@ public class GetTriggers {
 
 	}
 
-	public TriggerGetResponse getTriggers(int hostid) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public TriggerGetResponse getTriggers(int hostid) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
@@ -176,23 +177,23 @@ public class GetTriggers {
 		hostids.add(hostid);
 		params.setHostids(hostids);
 
-		TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);
+		TriggerGetResponse response = reportZabbixApi.getApi().trigger().get(request);
 		return response;
 	}
 
-	public static TriggerGetResponse getTriggers(List<Integer> hostsidarr) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public static TriggerGetResponse getTriggers(List<Integer> hostsidarr) throws ZabbixApiException, IOException {
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
 		params.setHostids(hostsidarr);
 
-		TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);
+		TriggerGetResponse response = reportZabbixApi.getApi().trigger().get(request);
 		return response;
 	}
 
-	public static List<TriggerObject> getTriggersObjList(int hostid) throws ZabbixApiException {
+	public static List<TriggerObject> getTriggersObjList(int hostid) throws ZabbixApiException, IOException {
 
 		List<Integer> hostidarr = new ArrayList<Integer>();
 		hostidarr.add(hostid);
@@ -208,7 +209,7 @@ public class GetTriggers {
 
 	}
 
-	public static ArrayList<ArrayList<Integer>> getTriggersList() throws ZabbixApiException {
+	public static ArrayList<ArrayList<Integer>> getTriggersList() throws ZabbixApiException, IOException {
 		// // group by host
 		// ArrayList hostGroups = new reportGetHostGroups().getHostGroupdIdList();
 		// ArrayList triggersList = new ArrayList();
@@ -238,7 +239,7 @@ public class GetTriggers {
 		return triggersList;
 	}
 
-	public static ArrayList<ArrayList<ArrayList<Integer>>> getTriggersListByGroup() throws ZabbixApiException {
+	public static ArrayList<ArrayList<ArrayList<Integer>>> getTriggersListByGroup() throws ZabbixApiException, IOException {
 		// group by host
 		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 		ArrayList<ArrayList<ArrayList<Integer>>> triggersList = new ArrayList<ArrayList<ArrayList<Integer>>>();

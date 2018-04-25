@@ -43,7 +43,7 @@ public class DataInsert {
 	
 	public static class AlertDataInsert implements Job {
 		public static Logger logger = General.logger(new AlertDataInsert());
-		public static void alertdataInsert(long datePre, long dateNex) throws ZabbixApiException {
+		public static void alertdataInsert(long datePre, long dateNex) throws ZabbixApiException, IOException {
 			
 			// get latest alert data
 			List<AlertBean> alertBeans = new GetAlerts().getBean();
@@ -68,7 +68,7 @@ public class DataInsert {
 			long dateNow = new Date().getTime();
 			long datePre;
 			try {
-				datePre = Long.parseLong(General.initProp("datePre.properties").getProperty("datePre"));
+				datePre = Long.parseLong(General.initProp("prop.properties").getProperty("datePre"));
 				long dateNex = dateNow < (datePre + 2592000000l) ? dateNow : (datePre + 2592000000l);
 				alertdataInsert(datePre, dateNex);
 			} catch (NumberFormatException e) {
@@ -87,7 +87,7 @@ public class DataInsert {
 
 	public static class XNDataInsert implements Job {
 		public static Logger logger = General.logger(new XNDataInsert());
-		public static void xndataInsert(long datePre, long dateNex) throws ZabbixApiException {
+		public static void xndataInsert(long datePre, long dateNex) throws ZabbixApiException, IOException {
 
 			// Indentifined performance history data
 			GetHistoryBeanList historyBean = new GetHistoryBeanList();
@@ -117,7 +117,7 @@ public class DataInsert {
 			long dateNow = new Date().getTime();
 			long datePre;
 			try {
-				datePre = Long.parseLong(General.initProp("datePre.properties").getProperty("datePre"));
+				datePre = Long.parseLong(General.initProp("prop.properties").getProperty("datePre"));
 				long dateNex = dateNow < (datePre + 2592000000l) ? dateNow : (datePre + 2592000000l);
 				xndataInsert(datePre, dateNex);
 			} catch (NumberFormatException e) {
@@ -136,7 +136,7 @@ public class DataInsert {
 	
 	public static class TriggerDataInsert implements Job {
 		public static Logger logger = General.logger(new TriggerDataInsert());
-		public static void triggerdataInsert(String insertClock) throws ZabbixApiException {
+		public static void triggerdataInsert(String insertClock) throws ZabbixApiException, IOException {
 			// get latest trigger data
 			List<TriggerBean> triggerBeans = new GetTriggers().getAllTriggers_App();
 			
@@ -163,6 +163,9 @@ public class DataInsert {
 			} catch (ZabbixApiException e) {
 				e.printStackTrace();
 				logger.error(e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 
@@ -170,7 +173,7 @@ public class DataInsert {
 	
 	public static class ItemDataInsert implements Job {
 		public static Logger logger = General.logger(new ItemDataInsert());
-		public static void itemdataInsert(String insertClock) throws ZabbixApiException {
+		public static void itemdataInsert(String insertClock) throws ZabbixApiException, IOException {
 			
 
 			// get latest item data
@@ -199,6 +202,9 @@ public class DataInsert {
 			} catch (ZabbixApiException e) {
 				e.printStackTrace();
 				logger.error(e);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		}
 

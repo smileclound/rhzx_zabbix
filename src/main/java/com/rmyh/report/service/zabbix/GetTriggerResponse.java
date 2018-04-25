@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.rmyh.report.dao.reportZabbixApi;
@@ -11,11 +12,11 @@ import com.zabbix4j.triggerprototype.TriggerPrototypeGetResponse;
 
 public class GetTriggerResponse {
 	
-	public TriggerGetResponse getTrigger(int hostid) throws ZabbixApiException {  
-		reportZabbixApi zabbixApi = new reportZabbixApi();
+	public TriggerGetResponse getTrigger(int hostid) throws ZabbixApiException, IOException {  
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> hostids = new ArrayList<Integer>();
     	hostids.add(hostid);
-		zabbixApi.login();  
+    	reportZabbixApi.login();  
 	    TriggerGetRequest request = new TriggerGetRequest();  
 	    TriggerGetRequest.Params params = request.getParams();  
 	  
@@ -24,14 +25,14 @@ public class GetTriggerResponse {
 	    // 这里可以设指定的id值，也可以不设值。设值的话，取指定的内容，不设的话，获取全部的host  
 	    params.setHostids(hostids);  
 
-	    TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);  
+	    TriggerGetResponse response = reportZabbixApi.getApi().trigger().get(request);  
 	  
 	    return response;  
 	    }  
 
-	public TriggerGetResponse getTrigger() throws ZabbixApiException {  
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();  
+	public TriggerGetResponse getTrigger() throws ZabbixApiException, IOException {  
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();  
 	    TriggerGetRequest request = new TriggerGetRequest();  
 	    TriggerGetRequest.Params params = request.getParams();  
 	  
@@ -41,15 +42,15 @@ public class GetTriggerResponse {
 //	    params.setHostids(null);  
 	    params.setSelectFunctions("extend");
 
-	    TriggerGetResponse response = zabbixApi.getApi().trigger().get(request);  
+	    TriggerGetResponse response = reportZabbixApi.getApi().trigger().get(request);  
 	  
 	    return response;  
 	    } 
 	
 	
-	public TriggerPrototypeGetResponse getProtoTrigger() throws ZabbixApiException {  
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();  
+	public TriggerPrototypeGetResponse getProtoTrigger() throws ZabbixApiException, IOException {  
+//		reportZabbixApi zabbixApi = new reportZabbixApi();
+		reportZabbixApi.login();  
 	    TriggerPrototypeGetRequest request = new TriggerPrototypeGetRequest();  
 //	    TriggerPrototypeGetRequest.Params params = request.getParams();  
 	  
@@ -59,7 +60,7 @@ public class GetTriggerResponse {
 //	    params.setHostids(null);  
 //	    params.set
 
-	    TriggerPrototypeGetResponse response = zabbixApi.getApi().triggerPrototype().get(request);  
+	    TriggerPrototypeGetResponse response = reportZabbixApi.getApi().triggerPrototype().get(request);  
 	  
 	    return response;  
 	    } 

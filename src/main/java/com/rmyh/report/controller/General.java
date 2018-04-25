@@ -26,6 +26,10 @@ public class General {
 		prop.load(input);
 		return prop;
 	}
+	
+	public static String getProperties(String profilename, String key) throws IOException {
+		return initProp(profilename).getProperty(key);
+	}
 
 	public static boolean isNum(String str) {
 

@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -15,11 +16,11 @@ public class GetTriggerBeanList {
 
 	// public static int itemId;
 
-	public static void main(String[] args) throws ZabbixApiException {
-		getBean();
-	}
+//	public static void main(String[] args) throws ZabbixApiException {
+//		getBean();
+//	}
 
-	public static List<TriggerBean> getBean() throws ZabbixApiException {
+	public static List<TriggerBean> getBean() throws ZabbixApiException, IOException {
 		TriggerGetResponse triggerObj = new GetTriggerResponse().getTrigger();
 		// TriggerPrototypeGetResponse triggerObj = new
 		// GetTriggerResponse().getProtoTrigger();

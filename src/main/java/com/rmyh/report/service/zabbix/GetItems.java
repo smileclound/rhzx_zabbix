@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -23,7 +24,7 @@ public class GetItems {
 ////		System.out.println(transKeyofName("cpu $1 time","fsjhfjk[nice,bad]"));
 //	}
 
-	public List<ItemBean> getAllItems() throws ZabbixApiException {
+	public List<ItemBean> getAllItems() throws ZabbixApiException, IOException {
 		List<ItemBean> itemBeans = new ArrayList<ItemBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
@@ -54,7 +55,7 @@ public class GetItems {
 
 	}
 
-	public List<ItemBean> getAllItems_App() throws ZabbixApiException {
+	public List<ItemBean> getAllItems_App() throws ZabbixApiException, IOException {
 		List<ItemBean> itemBeans = new ArrayList<ItemBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
@@ -97,10 +98,8 @@ public class GetItems {
 
 	}
 
-	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-//		ArrayList<Integer> itemids = new ArrayList<Integer>();
-		zabbixApi.login();
+	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException, IOException {
+		reportZabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
 
@@ -110,7 +109,7 @@ public class GetItems {
 		// 这里可以设指定的id值，也可以不设值。设值的话，取指定的内容，不设的话，获取全部的host
 		// params.setHostids(hostIds);
 
-		ApplicationGetResponse response = zabbixApi.getApi().application().get(request);
+		ApplicationGetResponse response = reportZabbixApi.getApi().application().get(request);
 
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 		for (int i = 0; i < response.getResult().size(); i++) {
@@ -123,16 +122,15 @@ public class GetItems {
 		return list;
 	}
 
-	public static List<ItemObject> getItemsObjList_ByApp(int appliId) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public static List<ItemObject> getItemsObjList_ByApp(int appliId) throws ZabbixApiException, IOException {
+		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
 		ArrayList<Integer> appliIdArr = new ArrayList<Integer>();
 		appliIdArr.add(appliId);
 		params.setApplicationids(appliIdArr);
-		ItemGetResponse response = zabbixApi.getApi().item().get(request);
+		ItemGetResponse response = reportZabbixApi.getApi().item().get(request);
 
 		ArrayList<ItemObject> itemsList = new ArrayList<ItemObject>();
 
@@ -145,9 +143,8 @@ public class GetItems {
 
 	}
 
-	public ItemGetResponse getItems(int hostid) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public ItemGetResponse getItems(int hostid) throws ZabbixApiException, IOException {
+		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
@@ -155,23 +152,22 @@ public class GetItems {
 		hostids.add(hostid);
 		params.setHostids(hostids);
 
-		ItemGetResponse response = zabbixApi.getApi().item().get(request);
+		ItemGetResponse response = reportZabbixApi.getApi().item().get(request);
 		return response;
 	}
 
-	public ItemGetResponse getItems(List<Integer> hostsidarr) throws ZabbixApiException {
-		reportZabbixApi zabbixApi = new reportZabbixApi();
-		zabbixApi.login();
+	public ItemGetResponse getItems(List<Integer> hostsidarr) throws ZabbixApiException, IOException {
+		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
 		params.setHostids(hostsidarr);
 
-		ItemGetResponse response = zabbixApi.getApi().item().get(request);
+		ItemGetResponse response = reportZabbixApi.getApi().item().get(request);
 		return response;
 	}
 
-	public List<ItemObject> getItemsObjList(int hostid) throws ZabbixApiException {
+	public List<ItemObject> getItemsObjList(int hostid) throws ZabbixApiException, IOException {
 
 		ArrayList<Integer> hostidarr = new ArrayList<Integer>();
 		hostidarr.add(hostid);
@@ -187,7 +183,7 @@ public class GetItems {
 
 	}
 
-	public static ArrayList<ArrayList<Integer>> getItemsList() throws ZabbixApiException {
+	public static ArrayList<ArrayList<Integer>> getItemsList() throws ZabbixApiException, IOException {
 		// // group by host
 		// ArrayList hostGroups = new reportGetHostGroups().getHostGroupdIdList();
 		// ArrayList itemsList = new ArrayList();
@@ -216,7 +212,7 @@ public class GetItems {
 		return itemsList;
 	}
 
-	public static ArrayList<ArrayList<ArrayList<Integer>>> getItemsListByGroup() throws ZabbixApiException {
+	public static ArrayList<ArrayList<ArrayList<Integer>>> getItemsListByGroup() throws ZabbixApiException, IOException {
 		// group by host
 		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
 		ArrayList<ArrayList<ArrayList<Integer>>> itemsList = new ArrayList<ArrayList<ArrayList<Integer>>>();

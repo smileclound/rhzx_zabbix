@@ -1,5 +1,6 @@
 package com.rmyh.report.service.zabbix;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.HashMap;
@@ -18,7 +19,7 @@ public class GetAlerts {
 //	}
 
 	// for zabbixweb
-	public static List<AlertBean> getCountBean() throws ZabbixApiException {
+	public static List<AlertBean> getCountBean() throws ZabbixApiException, IOException {
 		List<AlertBean> alertBeans = new GetAlerts().getBean();
 		List<AlertBean> alertCountBeans = new ArrayList<AlertBean>();
 		OUT: for (AlertBean alertbean : alertBeans) {
@@ -39,7 +40,7 @@ public class GetAlerts {
 		return alertCountBeans;
 	}
 
-	public List<AlertBean> getBean() throws ZabbixApiException {
+	public List<AlertBean> getBean() throws ZabbixApiException, IOException {
 		List<AlertBean> alertBeans = new ArrayList<AlertBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
