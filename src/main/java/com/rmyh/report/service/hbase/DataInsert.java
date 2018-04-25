@@ -39,11 +39,12 @@ public class DataInsert {
 
 	// log4j
 	// public static Logger logger = Logger.getLogger(DataInsert.class);
-	public static Logger logger = General.logger(new DataInsert());
+//	public static Logger logger = General.logger(new AlertDataInsert());
 	
-	public static class AlertDateInsert implements Job {
+	public static class AlertDataInsert implements Job {
+		public static Logger logger = General.logger(new AlertDataInsert());
 		public static void alertdataInsert(long datePre, long dateNex) throws ZabbixApiException {
-
+			
 			// get latest alert data
 			List<AlertBean> alertBeans = new GetAlerts().getBean();
 
@@ -84,7 +85,8 @@ public class DataInsert {
 
 	}
 
-	public static class XNDateInsert implements Job {
+	public static class XNDataInsert implements Job {
+		public static Logger logger = General.logger(new XNDataInsert());
 		public static void xndataInsert(long datePre, long dateNex) throws ZabbixApiException {
 
 			// Indentifined performance history data
@@ -132,7 +134,8 @@ public class DataInsert {
 
 	}
 	
-	public static class TriggerDateInsert implements Job {
+	public static class TriggerDataInsert implements Job {
+		public static Logger logger = General.logger(new TriggerDataInsert());
 		public static void triggerdataInsert(String insertClock) throws ZabbixApiException {
 			// get latest trigger data
 			List<TriggerBean> triggerBeans = new GetTriggers().getAllTriggers_App();
@@ -165,7 +168,8 @@ public class DataInsert {
 
 	}
 	
-	public static class ItemDateInsert implements Job {
+	public static class ItemDataInsert implements Job {
+		public static Logger logger = General.logger(new ItemDataInsert());
 		public static void itemdataInsert(String insertClock) throws ZabbixApiException {
 			
 

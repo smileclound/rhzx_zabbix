@@ -29,10 +29,10 @@ public class mainQuartz {
 			// and start it off
 			scheduler.start();
 			// define the job and tie it to our HelloJob class
-			JobDetail job1 = newJob(XNDateInsert.class).withIdentity("job1", "group1").build();
-			JobDetail job2 = newJob(AlertDateInsert.class).withIdentity("job2", "group1").build();
-			JobDetail job3 = newJob(TriggerDateInsert.class).withIdentity("job3", "group1").build();
-			JobDetail job4 = newJob(ItemDateInsert.class).withIdentity("job4", "group1").build();
+			JobDetail job1 = newJob(XNDataInsert.class).withIdentity("job1", "group1").build();
+			JobDetail job2 = newJob(AlertDataInsert.class).withIdentity("job2", "group1").build();
+			JobDetail job3 = newJob(TriggerDataInsert.class).withIdentity("job3", "group1").build();
+			JobDetail job4 = newJob(ItemDataInsert.class).withIdentity("job4", "group1").build();
 
 			// Trigger the job to run now, and then repeat every 40 seconds
 			Trigger trigger1 = newTrigger().withIdentity("trigger1", "group1").startNow()
