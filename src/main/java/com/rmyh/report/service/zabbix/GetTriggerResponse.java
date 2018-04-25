@@ -16,7 +16,7 @@ public class GetTriggerResponse {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> hostids = new ArrayList<Integer>();
     	hostids.add(hostid);
-    	reportZabbixApi.login();  
+//    	reportZabbixApi.login();  
 	    TriggerGetRequest request = new TriggerGetRequest();  
 	    TriggerGetRequest.Params params = request.getParams();  
 	  
@@ -32,7 +32,7 @@ public class GetTriggerResponse {
 
 	public TriggerGetResponse getTrigger() throws ZabbixApiException, IOException {  
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();  
+//		reportZabbixApi.login();  
 	    TriggerGetRequest request = new TriggerGetRequest();  
 	    TriggerGetRequest.Params params = request.getParams();  
 	  
@@ -50,7 +50,7 @@ public class GetTriggerResponse {
 	
 	public TriggerPrototypeGetResponse getProtoTrigger() throws ZabbixApiException, IOException {  
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();  
+//		reportZabbixApi.login();  
 	    TriggerPrototypeGetRequest request = new TriggerPrototypeGetRequest();  
 //	    TriggerPrototypeGetRequest.Params params = request.getParams();  
 	  

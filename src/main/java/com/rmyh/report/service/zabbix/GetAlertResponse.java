@@ -14,7 +14,7 @@ public class GetAlertResponse {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> hostids = new ArrayList<Integer>();
     	hostids.add(hostid);
-    	reportZabbixApi.login();  
+//    	reportZabbixApi.login();  
 	    AlertGetRequest request = new AlertGetRequest();  
 	    AlertGetRequest.Params params = request.getParams();  
 	  
@@ -30,7 +30,7 @@ public class GetAlertResponse {
 
 	public AlertGetResponse getAlert() throws ZabbixApiException, IOException {  
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();  
+//		reportZabbixApi.login();  
 	    AlertGetRequest request = new AlertGetRequest();  
 //	    AlertGetRequest.Params params = request.getParams();  
 	  

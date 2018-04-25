@@ -99,7 +99,7 @@ public class GetItems {
 	}
 
 	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException, IOException {
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
 
@@ -123,7 +123,7 @@ public class GetItems {
 	}
 
 	public static List<ItemObject> getItemsObjList_ByApp(int appliId) throws ZabbixApiException, IOException {
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
@@ -144,7 +144,7 @@ public class GetItems {
 	}
 
 	public ItemGetResponse getItems(int hostid) throws ZabbixApiException, IOException {
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();
@@ -157,7 +157,7 @@ public class GetItems {
 	}
 
 	public ItemGetResponse getItems(List<Integer> hostsidarr) throws ZabbixApiException, IOException {
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		ItemGetRequest request = new ItemGetRequest();
 		ItemGetRequest.Params params = request.getParams();

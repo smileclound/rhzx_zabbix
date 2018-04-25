@@ -16,7 +16,7 @@ public class GetHistoryResponse {
     
 	public HistoryGetResponse getHistory(ArrayList<Integer> itemids) throws ZabbixApiException, IOException {  
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();  
+//		reportZabbixApi.login();  
 	    HistoryGetRequest request = new HistoryGetRequest();  
 	    HistoryGetRequest.Params params = request.getParams();  
 	  
@@ -34,7 +34,7 @@ public class GetHistoryResponse {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
     	ArrayList<Integer> itemids = new ArrayList<Integer>();
 	    itemids.add(itemid);
-	    reportZabbixApi.login();  
+//	    reportZabbixApi.login();  
 	    HistoryGetRequest request = new HistoryGetRequest();  
 	    HistoryGetRequest.Params params = request.getParams();  
 	  

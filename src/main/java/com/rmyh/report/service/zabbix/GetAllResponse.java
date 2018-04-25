@@ -20,7 +20,7 @@ public class GetAllResponse {
 	
 	public HostgroupGetResponse getHostGroup() throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		HostgroupGetRequest hostGroupRequest = new HostgroupGetRequest();
 //		HostgroupGetRequest.Params params = hostGroupRequest.getParams();
 		HostgroupGetResponse hostGroupResponse = reportZabbixApi.getApi().hostgroup().get(hostGroupRequest);
@@ -28,7 +28,7 @@ public class GetAllResponse {
 	}
 	public HostGetResponse getHostByGroupId(int groupId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		HostGetRequest hostRequest = new HostGetRequest();
 		HostGetRequest.Params params = hostRequest.getParams();
 		List<Integer> groupIdList = new ArrayList<Integer>();
@@ -39,7 +39,7 @@ public class GetAllResponse {
 	}
 	public ApplicationGetResponse getApplicationByHostId(int hostId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		ApplicationGetRequest applicationRequest = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = applicationRequest.getParams();
 		List<Integer> hostIdList = new ArrayList<Integer>();
@@ -50,7 +50,7 @@ public class GetAllResponse {
 	}
 	public ItemGetResponse getItemByApplicationId(int applicationId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		ItemGetRequest itemRequest = new ItemGetRequest();
 		ItemGetRequest.Params params = itemRequest.getParams();
 		List<Integer> applicationIdList = new ArrayList<Integer>();

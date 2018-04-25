@@ -24,7 +24,7 @@ public class GetHosts {
 
 	public static HostGetResponse getHost(ArrayList<Integer> groupids) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		HostGetRequest request = new HostGetRequest();
 		HostGetRequest.Params params = request.getParams();
@@ -35,7 +35,7 @@ public class GetHosts {
 	}
 	public static HostInterfaceGetResponse getHostInterface(int hostId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		HostInterfaceGetRequest request = new HostInterfaceGetRequest();
 		HostInterfaceGetRequest.Params params = request.getParams();

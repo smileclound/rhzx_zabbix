@@ -20,7 +20,7 @@ public class GetHostGroups {
 
 	public HostgroupGetResponse getHostGroup() throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		HostgroupGetRequest request = new HostgroupGetRequest();
 		// HostgroupGetRequest.Params params = request.getParams();

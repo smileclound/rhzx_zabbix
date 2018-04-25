@@ -1,0 +1,27 @@
+2018-04-25 19:55  [ DefaultQuartzScheduler_Worker-2:2872 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "output": "extend"
+  },
+  "id": 1581720155,
+  "jsonrpc": "2.0",
+  "method": "hostgroup.get"
+}
+2018-04-25 19:55  [ DefaultQuartzScheduler_Worker-1:2997 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "output": "extend"
+  },
+  "id": 281370802,
+  "jsonrpc": "2.0",
+  "method": "hostgroup.get"
+}
+2018-04-25 19:55  [ DefaultQuartzScheduler_Worker-4:3198 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "output": "extend"
+  },
+  "id": 339387263,
+  "jsonrpc": "2.0",
+  "method": "hostgroup.get"
+}

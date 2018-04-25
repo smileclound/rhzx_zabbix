@@ -1,0 +1,273 @@
+2018-04-25 20:07  [ DefaultQuartzScheduler_Worker-1:1741 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "output": "extend"
+  },
+  "id": 1721819915,
+  "jsonrpc": "2.0",
+  "method": "hostgroup.get"
+}
+2018-04-25 20:07  [ DefaultQuartzScheduler_Worker-3:3438 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "groupids": [
+      1
+    ],
+    "monitored_hosts": false,
+    "proxy_hosts": false,
+    "templated_hosts": false,
+    "output": "extend"
+  },
+  "id": 1288436164,
+  "jsonrpc": "2.0",
+  "method": "host.get"
+}
+2018-04-25 20:07  [ DefaultQuartzScheduler_Worker-4:4227 ] - [ ERROR ]  com.zabbix4j.ZabbixApiException: com.zabbix4j.ZabbixApiException: API Error : {"code":-32602,"data":"Not authorised.","message":"Invalid params."}
+Request:{
+  "params": {
+    "groupids": [
+      1
+    ],
+    "monitored_hosts": false,
+    "proxy_hosts": false,
+    "templated_hosts": false,
+    "output": "extend"
+  },
+  "id": 1371581317,
+  "jsonrpc": "2.0",
+  "method": "host.get"
+}
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-3:212 ] - [ ERROR ]  Job group1.job3 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.zabbix.GetTriggers.getAllTriggers_App(GetTriggers.java:62)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.triggerdataInsert(DataInsert.java:141)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.execute(DataInsert.java:159)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-3:238 ] - [ ERROR ]  Job (group1.job3 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.zabbix.GetTriggers.getAllTriggers_App(GetTriggers.java:62)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.triggerdataInsert(DataInsert.java:141)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.execute(DataInsert.java:159)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-2:211 ] - [ ERROR ]  Job group1.job2 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-2:240 ] - [ ERROR ]  Job (group1.job2 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-1:210 ] - [ ERROR ]  Job group1.job1 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-1:241 ] - [ ERROR ]  Job (group1.job1 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-4:236 ] - [ ERROR ]  Job group1.job4 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.itemdataInsert(DataInsert.java:180)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.execute(DataInsert.java:198)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:15  [ DefaultQuartzScheduler_Worker-4:248 ] - [ ERROR ]  Job (group1.job4 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.itemdataInsert(DataInsert.java:180)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.execute(DataInsert.java:198)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:17  [ DefaultQuartzScheduler_Worker-5:120088 ] - [ ERROR ]  Job group1.job1 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:17  [ DefaultQuartzScheduler_Worker-5:120089 ] - [ ERROR ]  Job (group1.job1 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:17  [ DefaultQuartzScheduler_Worker-6:120092 ] - [ ERROR ]  Job group1.job2 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:17  [ DefaultQuartzScheduler_Worker-6:120092 ] - [ ERROR ]  Job (group1.job2 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:36)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-2:122 ] - [ ERROR ]  Job group1.job2 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-2:168 ] - [ ERROR ]  Job (group1.job2 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetAlerts.getBean(GetAlerts.java:45)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.alertdataInsert(DataInsert.java:49)
+	at com.rmyh.report.service.hbase.DataInsert$AlertDataInsert.execute(DataInsert.java:73)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-3:171 ] - [ ERROR ]  Job group1.job3 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.zabbix.GetTriggers.getAllTriggers_App(GetTriggers.java:62)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.triggerdataInsert(DataInsert.java:141)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.execute(DataInsert.java:159)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-3:171 ] - [ ERROR ]  Job (group1.job3 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.zabbix.GetTriggers.getAllTriggers_App(GetTriggers.java:62)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.triggerdataInsert(DataInsert.java:141)
+	at com.rmyh.report.service.hbase.DataInsert$TriggerDataInsert.execute(DataInsert.java:159)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-4:173 ] - [ ERROR ]  Job group1.job4 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.itemdataInsert(DataInsert.java:180)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.execute(DataInsert.java:198)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-4:173 ] - [ ERROR ]  Job (group1.job4 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.itemdataInsert(DataInsert.java:180)
+	at com.rmyh.report.service.hbase.DataInsert$ItemDataInsert.execute(DataInsert.java:198)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-1:121 ] - [ ERROR ]  Job group1.job1 threw an unhandled Exception: 
+java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+2018-04-25 20:20  [ DefaultQuartzScheduler_Worker-1:176 ] - [ ERROR ]  Job (group1.job1 threw an exception.
+org.quartz.SchedulerException: Job threw an unhandled exception. [See nested exception: java.lang.NullPointerException]
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:213)
+	at org.quartz.simpl.SimpleThreadPool$WorkerThread.run(SimpleThreadPool.java:573)
+Caused by: java.lang.NullPointerException
+	at com.rmyh.report.dao.reportZabbixApi.login(reportZabbixApi.java:32)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroup(GetHostGroups.java:23)
+	at com.rmyh.report.service.zabbix.GetHostGroups.getHostGroupsObjList(GetHostGroups.java:61)
+	at com.rmyh.report.service.zabbix.GetItems.getAllItems_App(GetItems.java:60)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.xndataInsert(DataInsert.java:95)
+	at com.rmyh.report.service.hbase.DataInsert$XNDataInsert.execute(DataInsert.java:122)
+	at org.quartz.core.JobRunShell.run(JobRunShell.java:202)
+	... 1 more

@@ -112,7 +112,7 @@ public class GetTriggers {
 	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
 		// ArrayList<Integer> triggerids = new ArrayList<Integer>();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
 
@@ -137,7 +137,7 @@ public class GetTriggers {
 
 	public static List<Result> getTriggersObjList_ByApp(int appliId) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
@@ -169,7 +169,7 @@ public class GetTriggers {
 
 	public TriggerGetResponse getTriggers(int hostid) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
@@ -183,7 +183,7 @@ public class GetTriggers {
 
 	public static TriggerGetResponse getTriggers(List<Integer> hostsidarr) throws ZabbixApiException, IOException {
 //		reportZabbixApi zabbixApi = new reportZabbixApi();
-		reportZabbixApi.login();
+//		reportZabbixApi.login();
 
 		TriggerGetRequest request = new TriggerGetRequest();
 		TriggerGetRequest.Params params = request.getParams();
