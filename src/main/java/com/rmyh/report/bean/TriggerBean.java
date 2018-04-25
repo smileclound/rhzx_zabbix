@@ -12,6 +12,8 @@ public class TriggerBean implements Comparable<TriggerBean> {
 	static {
 		map.put("hostId", Family);
 		map.put("hostName", Family);
+		map.put("itemIds", Family);
+		map.put("itemNames", Family);
 		map.put("groupId", Family);
 		map.put("groupName", Family);
 		map.put("triggerId", Family);
@@ -31,6 +33,8 @@ public class TriggerBean implements Comparable<TriggerBean> {
 	public int applicationId = -1;
 	public String hostIp = "";
 	public String hostName = "";//
+	public String itemIds = "";
+	public String itemNames = "";//
 	public String groupName = "";
 	public String applicationName = "";
 	public String triggerText = "";//
@@ -86,6 +90,22 @@ public class TriggerBean implements Comparable<TriggerBean> {
 
 	public void setHostName(String hostName) {
 		this.hostName = hostName;
+	}
+	
+	public String getItemIds() {
+		return itemIds;
+	}
+
+	public void setItemIds(String itemIds) {
+		this.itemIds = itemIds;
+	}
+
+	public String getItemNames() {
+		return itemNames;
+	}
+
+	public void setItemNames(String itemNames) {
+		this.itemNames = itemNames;
 	}
 
 	public String getGroupName() {

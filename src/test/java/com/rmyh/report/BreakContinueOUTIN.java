@@ -1,4 +1,4 @@
-package com.rmyh.report.zabbix;
+package com.rmyh.report;
 
 public class BreakContinueOUTIN {
 	public static void main(String[] args) {

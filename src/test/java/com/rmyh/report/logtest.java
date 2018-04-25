@@ -1,4 +1,4 @@
-package com.rmyh.report.zabbix;
+package com.rmyh.report;
 
 import org.apache.log4j.Logger;
 

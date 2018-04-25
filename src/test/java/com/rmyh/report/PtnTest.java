@@ -1,4 +1,4 @@
-package com.rmyh.report.zabbix;
+package com.rmyh.report;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

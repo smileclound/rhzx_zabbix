@@ -52,13 +52,13 @@ public class GetTriggers {
 
 			}
 		}
-//		System.out.println(triggerBeans);
+		// System.out.println(triggerBeans);
 		return triggerBeans;
 
 	}
 
 	public List<TriggerBean> getAllTriggers_App() throws ZabbixApiException {
-		List <ItemBean> allItemBean= new GetItems().getAllItems_App(); 
+		List<ItemBean> allItemBean = new GetItems().getAllItems_App();
 		List<TriggerBean> triggerBeans = new ArrayList<TriggerBean>();
 		List<HashMap<String, String>> hostGroupList = new GetHostGroups().getHostGroupsObjList();
 		for (int i = 0; i < hostGroupList.size(); i++) {
@@ -87,26 +87,30 @@ public class GetTriggers {
 						List<FunctionObject> functionObject = new ArrayList<FunctionObject>();
 						functionObject = triggerList.get(k).getFunctions();
 						for (FunctionObject funcobj : functionObject) {
-								triggerBean.setTriggerText(transExpression(allItemBean,funcobj,triggerList.get(k).getExpression()));
+							triggerBean.setTriggerText(
+									transExpression(allItemBean, funcobj, triggerList.get(k).getExpression()));
 						}
 						triggerBean.setTriggerDescri(triggerList.get(k).getDescription());
 						triggerBean.setApplicationId(applicationId);
 						triggerBean.setApplicationName(applicationName);
 						triggerBean.setStatus(triggerList.get(k).getStatus());
 						triggerBean.setPriority(triggerList.get(k).getPriority());
+						triggerBean.setItemIds(transFunctionObj2Item(allItemBean, functionObject).get("itemIds"));
+						triggerBean.setItemNames(transFunctionObj2Item(allItemBean, functionObject).get("itemNames"));
+//						transFunctionObj2Item(allItemBean, functionObject);
 						triggerBeans.add(triggerBean);
 					}
 				}
 			}
 		}
-//		System.out.println(triggerBeans);
+		// System.out.println(triggerBeans);
 		return triggerBeans;
 
 	}
 
 	public static List<HashMap<String, String>> getApplicationObjList(int hostId) throws ZabbixApiException {
 		reportZabbixApi zabbixApi = new reportZabbixApi();
-//		ArrayList<Integer> triggerids = new ArrayList<Integer>();
+		// ArrayList<Integer> triggerids = new ArrayList<Integer>();
 		zabbixApi.login();
 		ApplicationGetRequest request = new ApplicationGetRequest();
 		ApplicationGetRequest.Params params = request.getParams();
@@ -225,11 +229,12 @@ public class GetTriggers {
 				TriggerObject myTriggerObject = response.getResult().get(i);
 				triggersList_pg.add(myTriggerObject.getTriggerid());
 			}
-//			System.out.println("hostid:" + hosts.get(k) + "triggersid:" + triggersList_pg);
+			// System.out.println("hostid:" + hosts.get(k) + "triggersid:" +
+			// triggersList_pg);
 			triggersList.add(triggersList_pg);
 
 		}
-//		System.out.println(triggersList);
+		// System.out.println(triggersList);
 		return triggersList;
 	}
 
@@ -251,7 +256,8 @@ public class GetTriggers {
 					TriggerObject myTriggerObject = response.getResult().get(i);
 					triggersList_ph.add(myTriggerObject.getTriggerid());
 				}
-//				System.out.println("hostid:" + hostsList.get(k) + "triggersid:" + triggersList_ph);
+				// System.out.println("hostid:" + hostsList.get(k) + "triggersid:" +
+				// triggersList_ph);
 				triggersList_pg.add(triggersList_ph);
 
 			}
@@ -261,58 +267,75 @@ public class GetTriggers {
 		return triggersList;
 	}
 
-//	public static ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> getTriggersListObjByGroup() throws ZabbixApiException {
-//		// group by host
-//		List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
-//		ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>> triggersListObjByGroup = new ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>>();
-//
-//		for (int m = 0; m < hostGroupsList.size(); m++) {
-//			ArrayList<Integer> hostsList = new GetHosts().gethostsIdList((Integer) hostGroupsList.get(m));
-//			ArrayList<HashMap<String, ArrayList<?>>> triggersList_pg = new ArrayList<HashMap<String, ArrayList<?>>>();
-//
-//			HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>> triggersListObj = new HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>();
-//			for (int k = 0; k < hostsList.size(); k++) {
-//				HashMap<String, ArrayList<?>> triggersObj_pg = new HashMap<String, ArrayList<?>>();
-//				ArrayList<Integer> hostidarr = new ArrayList<Integer>();
-//				hostidarr.add(hostsList.get(k));
-//				TriggerGetResponse response = new GetTriggers().getTriggers(hostidarr);
-//				ArrayList<HashMap<String, Integer>> triggersList_ph = new ArrayList<HashMap<String, Integer>>();
-//
-//				for (int i = 0; i < response.getResult().size(); i++) {
-//					TriggerObject myTriggerObject = response.getResult().get(i);
-//					HashMap<String, Integer> triggerobj = new HashMap<String, Integer>();
-//					// triggerobj.put("triggername", myTriggerObject.getName());
-//					triggerobj.put("triggerid", myTriggerObject.getTriggerid());
-//					triggersList_ph.add(triggerobj);
-//				}
-//				// System.out.println("hostid:" + hostsList.get(k) + " ; triggers:" +
-//				// triggersList_ph);
-//				triggersObj_pg.put("triggerlist", triggersList_ph);
-//				triggersObj_pg.put("hostid", hostidarr);
-//				triggersList_pg.add(triggersObj_pg);
-//			}
-//			// System.out.println(triggersList_pg);
-//			// triggersListObj.add(triggersList_pg);
-//			triggersListObj.put("groupid", hostGroupsList.get(m));
-//			triggersListObj.put("triggerslistbyhost", triggersList_pg);
-//
-//			// System.out.println(triggersListObj);
-//			triggersListObjByGroup.add(triggersListObj);
-//		}
-//		System.out.println(triggersListObjByGroup);
-//		return triggersListObjByGroup;
-//	}
+	// public static ArrayList<HashMap<String, ArrayList<HashMap<String,
+	// ArrayList<?>>>>> getTriggersListObjByGroup() throws ZabbixApiException {
+	// // group by host
+	// List<?> hostGroupsList = new GetHostGroups().getHostGroupdIdList();
+	// ArrayList<HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>>
+	// triggersListObjByGroup = new ArrayList<HashMap<String,
+	// ArrayList<HashMap<String, ArrayList<?>>>>>();
+	//
+	// for (int m = 0; m < hostGroupsList.size(); m++) {
+	// ArrayList<Integer> hostsList = new GetHosts().gethostsIdList((Integer)
+	// hostGroupsList.get(m));
+	// ArrayList<HashMap<String, ArrayList<?>>> triggersList_pg = new
+	// ArrayList<HashMap<String, ArrayList<?>>>();
+	//
+	// HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>> triggersListObj =
+	// new HashMap<String, ArrayList<HashMap<String, ArrayList<?>>>>();
+	// for (int k = 0; k < hostsList.size(); k++) {
+	// HashMap<String, ArrayList<?>> triggersObj_pg = new HashMap<String,
+	// ArrayList<?>>();
+	// ArrayList<Integer> hostidarr = new ArrayList<Integer>();
+	// hostidarr.add(hostsList.get(k));
+	// TriggerGetResponse response = new GetTriggers().getTriggers(hostidarr);
+	// ArrayList<HashMap<String, Integer>> triggersList_ph = new
+	// ArrayList<HashMap<String, Integer>>();
+	//
+	// for (int i = 0; i < response.getResult().size(); i++) {
+	// TriggerObject myTriggerObject = response.getResult().get(i);
+	// HashMap<String, Integer> triggerobj = new HashMap<String, Integer>();
+	// // triggerobj.put("triggername", myTriggerObject.getName());
+	// triggerobj.put("triggerid", myTriggerObject.getTriggerid());
+	// triggersList_ph.add(triggerobj);
+	// }
+	// // System.out.println("hostid:" + hostsList.get(k) + " ; triggers:" +
+	// // triggersList_ph);
+	// triggersObj_pg.put("triggerlist", triggersList_ph);
+	// triggersObj_pg.put("hostid", hostidarr);
+	// triggersList_pg.add(triggersObj_pg);
+	// }
+	// // System.out.println(triggersList_pg);
+	// // triggersListObj.add(triggersList_pg);
+	// triggersListObj.put("groupid", hostGroupsList.get(m));
+	// triggersListObj.put("triggerslistbyhost", triggersList_pg);
+	//
+	// // System.out.println(triggersListObj);
+	// triggersListObjByGroup.add(triggersListObj);
+	// }
+	// System.out.println(triggersListObjByGroup);
+	// return triggersListObjByGroup;
+	// }
 
-	public static String transExpression(List <ItemBean> allItemBean,FunctionObject funcobj, String string)
+	// "functions": [{
+	// "functionid": "13513",
+	// "itemid": "24350",
+	// "function": "diff",
+	// "parameter": "0"
+	// }],
+	// "triggerid": "14062",
+	// "expression": "{13513}>0", transto
+	// {<server>:<key>.<function>(<parameter>)}<operator><constant>
+	public static String transExpression(List<ItemBean> allItemBean, FunctionObject funcobj, String string)
 			throws NumberFormatException, ZabbixApiException {
 		Pattern ptn = Pattern.compile("(?:\\{\\d*})");
 		Matcher m = ptn.matcher(string);
 		StringBuffer sb = new StringBuffer();
 		// List <ItemBean> allItemBean= new GetItems().getAllItems();
-		for (; m.find();) {
-				String Replace = transFunctionId2Name(allItemBean, funcobj,
-						Integer.parseInt(m.group().substring(m.group().indexOf("{") + 1, m.group().indexOf("}"))));
-				m.appendReplacement(sb, Replace);
+		while (m.find()) {
+			String Replace = transFunctionId2Name(allItemBean, funcobj,
+					Integer.parseInt(m.group().substring(m.group().indexOf("{") + 1, m.group().indexOf("}"))));
+			m.appendReplacement(sb, Replace);
 
 		}
 		m.appendTail(sb);
@@ -320,23 +343,45 @@ public class GetTriggers {
 		// return string;
 	}
 
-	public static String transFunctionId2Name(List <ItemBean> allItemBean, FunctionObject funcobj , int id) throws ZabbixApiException {
+	public static String transFunctionId2Name(List<ItemBean> allItemBean, FunctionObject funcobj, int id)
+			throws ZabbixApiException {
 		new String();
 		String hostName = "", itemKey = "";
-		for(ItemBean bean:allItemBean) {
-			if(bean.getItemId() == funcobj.getItemid()) {
-				hostName = bean.getHostName(); bean.getItemName(); itemKey = bean.getItemKey();
+		for (ItemBean bean : allItemBean) {
+			if (bean.getItemId() == funcobj.getItemid()) {
+				hostName = bean.getHostName();
+				bean.getItemName();
+				itemKey = bean.getItemKey();
 			}
 		}
 
-			if (funcobj.getFunctionid() == id) {
-				return "{" + hostName+":"+itemKey+"."+funcobj.getFunction()+"("+funcobj.getParameter()+")" + "}";
-			}
+		if (funcobj.getFunctionid() == id) {
+			return "{" + hostName + ":" + itemKey + "." + funcobj.getFunction() + "(" + funcobj.getParameter() + ")"
+					+ "}";
+		}
 		return "" + id;
 	}
 
 	public static String transFunctionId2Name(String string) {
 		return string;
+	}
+
+	public static HashMap<String, String> transFunctionObj2Item(List<ItemBean> allItemBean, List<FunctionObject> funcobjlist)
+			throws ZabbixApiException {
+		HashMap<String, String> hash = new HashMap<String, String>();
+		ArrayList<String> itemid = new ArrayList<String>();
+		ArrayList<String> itemname = new ArrayList<String>();
+		for (FunctionObject funcobj : funcobjlist) {
+			for (ItemBean bean : allItemBean) {
+				if (bean.getItemId() == funcobj.getItemid()) {
+					itemid.add(String.valueOf(bean.getItemId()));
+					itemname.add(String.valueOf(bean.getItemName()));
+					hash.put("itemIds", String.valueOf(itemid));
+					hash.put("itemNames",String.valueOf(itemname));				
+					}
+			}
+		}
+		return hash;
 	}
 
 }
